@@ -54,7 +54,7 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-400">
               <li>+56 9 1234 5678</li>
               <li>contacto@mpfingenieria.cl</li>
-              <li>Santiago, Chile</li>
+              <li>Valdivia, Chile</li>
             </ul>
           </div>
         </div>

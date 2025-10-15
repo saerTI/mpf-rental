@@ -169,7 +169,7 @@ export default function Contact() {
                 </div>
                 <div className="ml-4">
                   <h3 className="text-lg font-semibold text-gray-900">Dirección</h3>
-                  <p className="text-gray-600 mt-1">Santiago, Chile</p>
+                  <p className="text-gray-600 mt-1">Valdivia, Chile</p>
                 </div>
               </div>
             </div>
