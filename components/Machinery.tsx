@@ -80,39 +80,26 @@ export default function Machinery() {
     setCurrentIndex(0);
   };
 
-  // Auto-play opcional (comentado por defecto)
-  /*
-  useEffect(() => {
-    const interval = setInterval(() => {
-      goToNext();
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [currentIndex, maxIndex]);
-  */
-
   // Calcular número de dots
   const totalDots = maxIndex + 1;
 
   return (
-    <section id="maquinaria" className="pt-32 pb-20 bg-gradient-to-b from-gray-50 to-white scroll-mt-[80px]">
+    <section id="maquinaria" className="pt-16 pb-16 bg-gradient-to-b from-gray-50 to-white scroll-mt-[80px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        {/* Header - Espacios reducidos */}
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             Nuestra Maquinaria
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            Equipos de última generación para proyectos de pavimentación y reparación de caminos
-          </p>
         </div>
 
-        {/* Filtros de categoría */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        {/* Filtros de categoría - Espacios reducidos */}
+        <div className="flex flex-wrap justify-center gap-2 mb-6">
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => handleCategoryChange(category.id)}
-              className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+              className={`px-5 py-2 rounded-lg font-medium transition-all duration-300 text-sm ${
                 selectedCategory === category.id
                   ? 'bg-gray-900 text-white shadow-lg scale-105'
                   : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md hover:shadow-lg'
@@ -123,9 +110,9 @@ export default function Machinery() {
           ))}
         </div>
 
-        {/* Contador de resultados */}
-        <div className="text-center mb-8">
-          <p className="text-gray-600 text-base">
+        {/* Contador de resultados - Espacios reducidos */}
+        <div className="text-center mb-6">
+          <p className="text-gray-600 text-sm">
             Mostrando{' '}
             <span className="font-semibold text-gray-900">
               {filteredMachinery.length}
@@ -204,9 +191,9 @@ export default function Machinery() {
           </div>
         )}
 
-        {/* Dots Navigation - Solo mostrar si hay más items que los visibles */}
+        {/* Dots Navigation - REDUCIDO Y MÁS VISIBLE - Solo mostrar si hay más items que los visibles */}
         {filteredMachinery.length > itemsToShow && totalDots > 1 && (
-          <div className="flex justify-center items-center gap-2 mt-10">
+          <div className="flex justify-center items-center gap-2 mt-6">
             {Array.from({ length: totalDots }).map((_, index) => (
               <button
                 key={index}
@@ -223,8 +210,8 @@ export default function Machinery() {
           </div>
         )}
 
-        {/* CTA Button */}
-        <div className="text-center mt-12">
+        {/* CTA Button - Espaciado reducido */}
+        <div className="text-center mt-8">
           <a
             href="#contacto"
             className="inline-flex items-center px-8 py-4 bg-gray-900 text-white font-semibold rounded-lg shadow-lg hover:bg-gray-800 transition-all duration-300 hover:shadow-xl hover:scale-105"

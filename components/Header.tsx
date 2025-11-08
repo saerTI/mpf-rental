@@ -2,36 +2,43 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('inicio');
+  const isScrollingRef = useRef(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
+      // No actualizar la sección activa si estamos en medio de un scroll programático
+      if (isScrollingRef.current) {
+        return;
+      }
+
       // Detectar sección activa
       const sections = ['inicio', 'maquinaria', 'nosotros', 'contacto'];
       
-      // Punto de referencia para detectar la sección (debe coincidir con el headerOffset)
-      const scrollOffset = 80;
+      // Ajustar el offset para mejor detección (header height + margen)
+      const scrollOffset = 100; // Aumentado de 80 a 100 para mejor detección
       
-      // Recorrer las secciones de abajo hacia arriba para encontrar la activa
+      // Obtener la posición actual del scroll
+      const scrollPosition = window.scrollY + scrollOffset;
+      
+      // Encontrar la sección activa basándose en la posición
       let currentSection = 'inicio';
       
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
+      for (const section of sections) {
         const element = document.getElementById(section);
-        
         if (element) {
-          const rect = element.getBoundingClientRect();
-          // Si el top de la sección está por encima o en el punto de referencia
-          if (rect.top <= scrollOffset) {
+          const offsetTop = element.offsetTop;
+          // Si hemos pasado el inicio de esta sección
+          if (scrollPosition >= offsetTop) {
             currentSection = section;
-            break;
           }
         }
       }
@@ -41,24 +48,27 @@ export default function Header() {
 
     // Ejecutar al cargar y al hacer scroll
     handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    
-    // También ejecutar después de un pequeño delay para asegurar que se actualice
-    const timeoutId = setTimeout(handleScroll, 100);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timeoutId);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
     };
   }, []);
 
   const scrollToSection = (sectionId: string) => {
+    // Marcar que estamos haciendo scroll programático
+    isScrollingRef.current = true;
+    
     // Actualizar inmediatamente la sección activa para feedback visual
     setActiveSection(sectionId);
     
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerOffset = 80; // Debe coincidir con scrollOffset en handleScroll
+      // Offset ajustado para mejor visualización de la sección completa
+      const headerOffset = 70;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -66,6 +76,16 @@ export default function Header() {
         top: offsetPosition,
         behavior: 'smooth'
       });
+      
+      // Limpiar timeout anterior si existe
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      
+      // Desmarcar después de que termine el smooth scroll (típicamente 500-1000ms)
+      scrollTimeoutRef.current = setTimeout(() => {
+        isScrollingRef.current = false;
+      }, 1000);
     }
     setIsMenuOpen(false);
   };
