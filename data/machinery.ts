@@ -131,9 +131,9 @@ export const machineryData: Machinery[] = [
   },
   {
     id: 'plantas',
-    name: 'Planta de Asfalto Móvil',
+    name: 'Planta de Áridos',
     category: 'Producción',
-    description: 'Planta de asfalto móvil para producción en sitio. Alta capacidad de producción y eficiencia energética. Perfecta para proyectos de gran envergadura que requieren producción continua de mezcla asfáltica.',
+    description: 'Planta de Áridos para producción en sitio. Alta capacidad de producción y eficiencia energética. Perfecta para proyectos de gran envergadura que requieren producción continua de mezcla asfáltica.',
     specs: {
       capacity: '160-200 ton/h',
       power: '320 HP',

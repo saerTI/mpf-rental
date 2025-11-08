@@ -101,7 +101,7 @@ export default function Contact() {
                   <option value="rodillo">Rodillo Compactador</option>
                   <option value="fresadora">Fresadora de Asfalto</option>
                   <option value="motoniveladora">Motoniveladora</option>
-                  <option value="planta">Planta de Asfalto</option>
+                  <option value="planta">Planta de Áridos</option>
                   <option value="otro">Otro</option>
                 </select>
               </div>
@@ -154,7 +154,7 @@ export default function Contact() {
                 </div>
                 <div className="ml-4">
                   <h3 className="text-lg font-semibold text-gray-900">Email</h3>
-                  <p className="text-gray-600 mt-1">contacto@mpfingenieria.cl</p>
+                  <p className="text-gray-600 mt-1">contacto@mpfrental.cl</p>
                 </div>
               </div>
             </div>

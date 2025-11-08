@@ -17,7 +17,7 @@ export default function Footer() {
               </div>
               <div>
                 <span className="text-2xl font-bold">MPF</span>
-                <span className="text-2xl font-light ml-1">Ingeniería</span>
+                <span className="text-2xl font-light ml-1">Rental</span>
               </div>
             </div>
             <p className="text-gray-400 mb-6 max-w-md leading-relaxed">
@@ -102,7 +102,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:contacto@mpfingenieria.cl" className="text-gray-400 hover:text-white transition flex items-start group">
+                <a href="mailto:contacto@mpfrental.cl" className="text-gray-400 hover:text-white transition flex items-start group">
                   <div className="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center mr-3 group-hover:bg-blue-600/30 transition">
                     <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -110,7 +110,7 @@ export default function Footer() {
                   </div>
                   <div>
                     <div className="text-sm text-gray-500">Email</div>
-                    <div className="font-medium text-sm">contacto@mpfingenieria.cl</div>
+                    <div className="font-medium text-sm">contacto@mpfrental.cl</div>
                   </div>
                 </a>
               </li>
@@ -166,7 +166,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm text-center md:text-left">
-              &copy; {new Date().getFullYear()} MPF Ingeniería. Todos los derechos reservados.
+              &copy; {new Date().getFullYear()} MPF Rental. Todos los derechos reservados.
             </p>
             <div className="flex items-center gap-4 text-sm text-gray-400">
               <button className="hover:text-white transition">Política de Privacidad</button>

@@ -16,10 +16,10 @@ export default function MachineryCard({ machinery }: MachineryCardProps) {
 
   return (
     <>
-      <div className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 border border-gray-100">
+      <div className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col h-full">
         {/* Image Container - Clickable */}
         <div 
-          className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden cursor-pointer"
+          className="relative h-64 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden cursor-pointer flex-shrink-0"
           onClick={() => setIsModalOpen(true)}
         >
           <Image
@@ -57,8 +57,8 @@ export default function MachineryCard({ machinery }: MachineryCardProps) {
           </div>
         </div>
         
-        {/* Content */}
-        <div className="p-6">
+        {/* Content - flex-grow pushes buttons to bottom */}
+        <div className="p-6 flex flex-col flex-grow">
           <h3 
             className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 cursor-pointer"
             onClick={() => setIsModalOpen(true)}
@@ -70,8 +70,8 @@ export default function MachineryCard({ machinery }: MachineryCardProps) {
             {machinery.description}
           </p>
           
-          {/* Specs Grid */}
-          <div className="space-y-2 mb-6">
+          {/* Specs Grid - flex-grow pushes buttons down */}
+          <div className="space-y-2 mb-6 flex-grow">
             {machinery.specs.weight && (
               <div className="flex items-center justify-between text-sm bg-gray-50 rounded-lg px-3 py-2">
                 <span className="text-gray-500 font-medium flex items-center gap-2">
@@ -107,8 +107,8 @@ export default function MachineryCard({ machinery }: MachineryCardProps) {
             )}
           </div>
           
-          {/* Action Buttons */}
-          <div className="flex gap-2">
+          {/* Action Buttons - Always at bottom */}
+          <div className="flex gap-2 mt-auto">
             <button
               onClick={() => setIsModalOpen(true)}
               className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-xl transform hover:scale-105 text-center"
@@ -119,7 +119,7 @@ export default function MachineryCard({ machinery }: MachineryCardProps) {
               href="/contacto"
               className="flex-1 border-2 border-blue-600 text-blue-600 px-4 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 text-center"
             >
-              Cotizar
+              Disponibilidad
             </Link>
           </div>
         </div>

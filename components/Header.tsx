@@ -39,11 +39,11 @@ export default function Header() {
                 </svg>
                 +56 9 1234 5678
               </a>
-              <a href="mailto:contacto@mpfingenieria.cl" className="flex items-center gap-2 hover:text-blue-100 transition">
+              <a href="mailto:contacto@mpfrental.cl" className="flex items-center gap-2 hover:text-blue-100 transition">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                contacto@mpfingenieria.cl
+                contacto@mpfrental.cl
               </a>
             </div>
             <div className="ml-auto text-xs">
@@ -71,7 +71,7 @@ export default function Header() {
               </div>
               <div>
                 <span className="text-2xl font-bold text-gray-900">MPF</span>
-                <span className="text-2xl font-light text-gray-600 ml-1">Ingeniería</span>
+                <span className="text-2xl font-light text-gray-600 ml-1">Rental</span>
               </div>
             </div>
           </Link>

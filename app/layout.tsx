@@ -8,7 +8,7 @@ import Footer from '@/components/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'MPF Ingeniería - Arriendo de Maquinaria para Construcción de Caminos',
+  title: 'MPF Rental - Arriendo de Maquinaria para Construcción de Caminos',
   description: 'Arriendo de maquinaria especializada para construcción y reparación de caminos. Equipos de pavimentación, compactación y más. Servicio profesional en Valdivia, Chile.',
   keywords: 'arriendo maquinaria, construcción caminos, pavimentación, compactación, maquinaria pesada, Valdivia',
 };
