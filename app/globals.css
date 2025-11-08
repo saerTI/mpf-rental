@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Smooth scroll para navegación */
+html {
+  scroll-behavior: smooth;
+}
+
 @layer utilities {
   .animate-fade-in {
     animation: fadeIn 0.8s ease-in;

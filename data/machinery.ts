@@ -42,6 +42,7 @@ export const machineryData: Machinery[] = [
       '/images/maquinaria/optimized/CT-01/fotos/imagen1.jpg',
       '/images/maquinaria/optimized/CT-01/fotos/imagen2.jpg',
       '/images/maquinaria/optimized/CT-01/fotos/imagen3.jpg',
+      '/images/maquinaria/optimized/CT-01/fotos/imagen4.jpg',
     ],
     available: true,
     pdfUrl: '/pdf/CT-01-specs.pdf'
@@ -75,11 +76,12 @@ export const machineryData: Machinery[] = [
       motor: 'Cummins B5.9-C (6 cil.)',
       emissions: 'Tier 2'
     },
-    image: '/images/maquinaria/optimized/EX-01/fotos/imagen1.jpg',
+    image: '/images/maquinaria/optimized/EX-01/fotos/imagen4.jpg',
     images: [
       '/images/maquinaria/optimized/EX-01/fotos/imagen1.jpg',
       '/images/maquinaria/optimized/EX-01/fotos/imagen2.jpg',
       '/images/maquinaria/optimized/EX-01/fotos/imagen3.jpg',
+      '/images/maquinaria/optimized/EX-01/fotos/imagen4.jpg',
     ],
     available: true,
     pdfUrl: '/pdf/EX-01-specs.pdf'
@@ -97,11 +99,12 @@ export const machineryData: Machinery[] = [
       transmission: 'PowerShift Plus 8 vel.',
       traction: '6x6 Hidrostática'
     },
-    image: '/images/maquinaria/optimized/MN-01/fotos/imagen1.jpg',
+    image: '/images/maquinaria/optimized/MN-01/fotos/imagen4.jpg',
     images: [
       '/images/maquinaria/optimized/MN-01/fotos/imagen1.jpg',
       '/images/maquinaria/optimized/MN-01/fotos/imagen2.jpg',
       '/images/maquinaria/optimized/MN-01/fotos/imagen3.jpg',
+      '/images/maquinaria/optimized/MN-01/fotos/imagen4.jpg',
     ],
     available: true,
     pdfUrl: '/pdf/MN-01-specs.pdf'
@@ -139,11 +142,13 @@ export const machineryData: Machinery[] = [
       power: '320 HP',
       mobility: 'Totalmente móvil'
     },
-    image: '/images/maquinaria/optimized/Plantas/fotos/imagen1.jpg',
+    image: '/images/maquinaria/optimized/Plantas/fotos/imagen10.jpg',
     images: [
       '/images/maquinaria/optimized/Plantas/fotos/imagen1.jpg',
       '/images/maquinaria/optimized/Plantas/fotos/imagen2.jpg',
       '/images/maquinaria/optimized/Plantas/fotos/imagen3.jpg',
+      '/images/maquinaria/optimized/Plantas/fotos/imagen10.jpg',
+      '/images/maquinaria/optimized/Plantas/fotos/imagen12.jpg',
     ],
     available: true,
     pdfUrl: '/pdf/Plantas-specs.pdf'

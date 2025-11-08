@@ -1,9 +1,23 @@
 // components/Hero.tsx
-import Link from 'next/link';
+'use client';
 
 export default function Hero() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
-    <section className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
+    <section id="inicio" className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden pt-32 scroll-mt-[80px]">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -30,19 +44,19 @@ export default function Hero() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 animate-slide-up delay-300">
-            <Link 
-              href="/maquinaria"
+            <button 
+              onClick={() => scrollToSection('maquinaria')}
               className="group relative bg-gradient-to-r from-blue-500 to-purple-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl transition-all duration-300 text-center overflow-hidden transform hover:scale-105"
             >
               <span className="relative z-10">Ver Maquinaria</span>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </Link>
-            <Link 
-              href="/contacto"
+            </button>
+            <button 
+              onClick={() => scrollToSection('contacto')}
               className="group border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300 text-center transform hover:scale-105"
             >
               Contactar
-            </Link>
+            </button>
           </div>
         </div>
       </div>

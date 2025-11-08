@@ -26,7 +26,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section id="contacto" className="py-20 bg-gray-50 scroll-mt-[80px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -97,12 +97,12 @@ export default function Contact() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
                 >
                   <option value="">Selecciona una opción</option>
-                  <option value="pavimentadora">Pavimentadora de Asfalto</option>
-                  <option value="rodillo">Rodillo Compactador</option>
-                  <option value="fresadora">Fresadora de Asfalto</option>
-                  <option value="motoniveladora">Motoniveladora</option>
-                  <option value="planta">Planta de Áridos</option>
-                  <option value="otro">Otro</option>
+                  <option value="cargadores">Cargadores</option>
+                  <option value="transporte">Transporte</option>
+                  <option value="excavacion">Excavación</option>
+                  <option value="nivelacion">Nivelación</option>
+                  <option value="compactacion">Compactación</option>
+                  <option value="produccion">Producción</option>
                 </select>
               </div>
 
@@ -113,24 +113,23 @@ export default function Contact() {
                 <textarea
                   id="message"
                   name="message"
+                  rows={4}
                   value={formData.message}
                   onChange={handleChange}
-                  required
-                  rows={4}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                ></textarea>
+                />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-gray-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition"
+                className="w-full bg-gray-900 text-white py-3 rounded-lg hover:bg-gray-800 transition font-semibold"
               >
                 Enviar Mensaje
               </button>
             </form>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6">
             <div className="bg-white p-6 rounded-lg shadow-md">
               <div className="flex items-start">
                 <div className="flex-shrink-0">
@@ -168,13 +167,13 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div className="ml-4">
-                  <h3 className="text-lg font-semibold text-gray-900">Dirección</h3>
-                  <p className="text-gray-600 mt-1">Valdivia, Chile</p>
+                  <h3 className="text-lg font-semibold text-gray-900">Ubicación</h3>
+                  <p className="text-gray-600 mt-1">Valdivia, Los Ríos, Chile</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gray-900 text-white p-6 rounded-lg">
+            <div className="bg-blue-600 text-white p-6 rounded-lg">
               <h3 className="text-xl font-semibold mb-4">Horario de Atención</h3>
               <div className="space-y-2">
                 <div className="flex justify-between">
@@ -182,11 +181,11 @@ export default function Contact() {
                   <span className="font-semibold">8:00 - 18:00</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Sábado:</span>
+                  <span>Sábados:</span>
                   <span className="font-semibold">9:00 - 14:00</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Domingo:</span>
+                  <span>Domingos:</span>
                   <span className="font-semibold">Cerrado</span>
                 </div>
               </div>
