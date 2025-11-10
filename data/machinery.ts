@@ -22,7 +22,7 @@ export const machineryData: Machinery[] = [
       '/images/maquinaria/optimized/CF-02/fotos/imagen3.jpg',
     ],
     available: true,
-    pdfUrl: '/pdf/CF-02-specs.pdf'
+    pdfUrl: '/images/maquinaria/optimized/CF-02/ficha_tecnica.pdf'
   },
   {
     id: 'ct-01',
@@ -45,7 +45,7 @@ export const machineryData: Machinery[] = [
       '/images/maquinaria/optimized/CT-01/fotos/imagen4.jpg',
     ],
     available: true,
-    pdfUrl: '/pdf/CT-01-specs.pdf'
+    pdfUrl: '/images/maquinaria/optimized/CT-01/ficha_tecnica.pdf'
   },
   {
     id: 'ct-02',
@@ -63,6 +63,7 @@ export const machineryData: Machinery[] = [
       '/images/maquinaria/optimized/CT-02/fotos/imagen3.jpg',
     ],
     available: true
+    // No tiene ficha técnica
   },
   {
     id: 'ex-01',
@@ -84,7 +85,7 @@ export const machineryData: Machinery[] = [
       '/images/maquinaria/optimized/EX-01/fotos/imagen4.jpg',
     ],
     available: true,
-    pdfUrl: '/pdf/EX-01-specs.pdf'
+    pdfUrl: '/images/maquinaria/optimized/EX-01/ficha_tecnica.pdf'
   },
   {
     id: 'mn-01',
@@ -107,7 +108,7 @@ export const machineryData: Machinery[] = [
       '/images/maquinaria/optimized/MN-01/fotos/imagen4.jpg',
     ],
     available: true,
-    pdfUrl: '/pdf/MN-01-specs.pdf'
+    pdfUrl: '/images/maquinaria/optimized/MN-01/ficha_tecnica.pdf'
   },
   {
     id: 'rt-01',
@@ -130,7 +131,7 @@ export const machineryData: Machinery[] = [
       '/images/maquinaria/optimized/RT-01/fotos/imagen3.jpg',
     ],
     available: true,
-    pdfUrl: '/pdf/RT-01-specs.pdf'
+    pdfUrl: '/images/maquinaria/optimized/RT-01/ficha_tecnica.pdf'
   },
   {
     id: 'plantas',
@@ -151,7 +152,7 @@ export const machineryData: Machinery[] = [
       '/images/maquinaria/optimized/Plantas/fotos/imagen12.jpg',
     ],
     available: true,
-    pdfUrl: '/pdf/Plantas-specs.pdf'
+    pdfUrl: '/images/maquinaria/optimized/Plantas/ficha_tecnica.pdf'
   }
 ];
 

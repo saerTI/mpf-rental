@@ -176,7 +176,7 @@ export default function MachineryModal({ machinery, isOpen, onClose }: Machinery
                 </div>
               </div>
 
-              {/* PDF Download Button */}
+              {/* PDF Download Button - ESTE ES EL BOTÓN DE FICHA TÉCNICA */}
               {machinery.pdfUrl && (
                 <div className="mb-8">
                   <a
