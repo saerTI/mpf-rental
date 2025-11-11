@@ -139,7 +139,7 @@ export default function Contact() {
                 </div>
                 <div className="ml-4">
                   <h3 className="text-lg font-semibold text-gray-900">Teléfono</h3>
-                  <p className="text-gray-600 mt-1">+56 9 1234 5678</p>
+                  <p className="text-gray-600 mt-1">+56 9 56975372435</p>
                 </div>
               </div>
             </div>

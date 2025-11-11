@@ -17,43 +17,43 @@ export default function Hero() {
   };
 
   return (
-    <section id="inicio" className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden pt-32 scroll-mt-[80px]">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-60 -left-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+    <section id="inicio" className="relative bg-[#3d4e7c] text-white overflow-hidden pt-32 scroll-mt-[80px]">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }}></div>
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
         <div className="max-w-3xl">
           <div className="mb-6 inline-block">
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 text-white px-4 py-2 rounded-full text-sm font-semibold animate-fade-in">
-              ✨ Soluciones Profesionales
+            <span className="bg-[#ff7d6c] text-white px-4 py-2 rounded-md text-sm font-medium">
+              Soluciones Profesionales en Construcción
             </span>
           </div>
           
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-slide-up">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             Arriendo de Maquinaria para{' '}
-            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="text-[#ff7d6c]">
               Construcción de Caminos
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 animate-slide-up delay-200">
-            Equipos especializados para pavimentación, compactación y reparación de asfalto y concreto.
+          <p className="text-xl md:text-2xl text-white/90 mb-8 font-light">
+            Equipos especializados para pavimentación, compactación y reparación de asfalto y concreto en el sur de Chile.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 animate-slide-up delay-300">
+          <div className="flex flex-col sm:flex-row gap-4">
             <button 
               onClick={() => scrollToSection('maquinaria')}
-              className="group relative bg-gradient-to-r from-blue-500 to-purple-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl transition-all duration-300 text-center overflow-hidden transform hover:scale-105"
+              className="bg-[#ff7d6c] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#ff6b5a] transition-all duration-300 text-center shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              <span className="relative z-10">Ver Maquinaria</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              Ver Maquinaria
             </button>
             <button 
               onClick={() => scrollToSection('contacto')}
-              className="group border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300 text-center transform hover:scale-105"
+              className="border-2 border-white/80 text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-[#3d4e7c] transition-all duration-300 text-center transform hover:scale-105"
             >
               Contactar
             </button>
@@ -61,8 +61,12 @@ export default function Hero() {
         </div>
       </div>
       
-      {/* Decorative grid pattern */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+      {/* Bottom divider */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <svg viewBox="0 0 1440 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+          <path d="M0 48h1440V0S1140 48 720 48 0 0 0 0v48z" fill="#ffffff"/>
+        </svg>
+      </div>
     </section>
   );
 }

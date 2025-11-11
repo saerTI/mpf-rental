@@ -9,7 +9,7 @@ export default function WhatsAppButton() {
 
   // Número de WhatsApp (formato internacional sin +, espacios ni guiones)
   // Ejemplo: +56 9 1234 5678 → 56912345678
-  const phoneNumber = '56912345678';
+  const phoneNumber = '56975372435';
   
   // Mensaje predeterminado
   const defaultMessage = '¡Hola! Me gustaría obtener más información sobre el arriendo de maquinaria.';

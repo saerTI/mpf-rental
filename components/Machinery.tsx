@@ -10,7 +10,6 @@ export default function Machinery() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Generar categorías dinámicamente desde los datos
   const allCategories = ['all', ...new Set(machineryData.map(m => m.category))];
   
   const categories = allCategories.map(cat => ({
@@ -18,12 +17,10 @@ export default function Machinery() {
     name: cat === 'all' ? 'Todas' : cat
   }));
 
-  // Filtrar maquinaria por categoría
   const filteredMachinery = selectedCategory === 'all' 
     ? machineryData 
     : machineryData.filter(m => m.category === selectedCategory);
 
-  // Número de items visibles según el tamaño de pantalla
   const getItemsToShow = () => {
     if (typeof window === 'undefined') return 3;
     if (window.innerWidth < 768) return 1;
@@ -43,10 +40,8 @@ export default function Machinery() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Calcular el máximo índice posible
   const maxIndex = Math.max(0, filteredMachinery.length - itemsToShow);
 
-  // Navegación del carousel
   const goToNext = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
@@ -74,26 +69,27 @@ export default function Machinery() {
     setTimeout(() => setIsTransitioning(false), 500);
   };
 
-  // Reset index cuando cambia la categoría
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
     setCurrentIndex(0);
   };
 
-  // Calcular número de dots
   const totalDots = maxIndex + 1;
 
   return (
-    <section id="maquinaria" className="pt-16 pb-16 bg-gradient-to-b from-gray-50 to-white scroll-mt-[80px]">
+    <section id="maquinaria" className="pt-16 pb-16 bg-gray-50 scroll-mt-[80px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header - Espacios reducidos */}
+        {/* Header */}
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             Nuestra Maquinaria
           </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Equipos de última generación para sus proyectos de construcción
+          </p>
         </div>
 
-        {/* Filtros de categoría - Espacios reducidos */}
+        {/* Filtros de categoría */}
         <div className="flex flex-wrap justify-center gap-2 mb-6">
           {categories.map((category) => (
             <button
@@ -101,8 +97,8 @@ export default function Machinery() {
               onClick={() => handleCategoryChange(category.id)}
               className={`px-5 py-2 rounded-lg font-medium transition-all duration-300 text-sm ${
                 selectedCategory === category.id
-                  ? 'bg-gray-900 text-white shadow-lg scale-105'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md hover:shadow-lg'
+                  ? 'bg-[#3d4e7c] text-white shadow-md'
+                  : 'bg-white text-gray-700 hover:bg-gray-100 shadow-sm hover:shadow-md border border-gray-200'
               }`}
             >
               {category.name}
@@ -110,11 +106,11 @@ export default function Machinery() {
           ))}
         </div>
 
-        {/* Contador de resultados - Espacios reducidos */}
+        {/* Contador de resultados */}
         <div className="text-center mb-6">
           <p className="text-gray-600 text-sm">
             Mostrando{' '}
-            <span className="font-semibold text-gray-900">
+            <span className="font-semibold text-[#3d4e7c]">
               {filteredMachinery.length}
             </span>{' '}
             {filteredMachinery.length === 1 ? 'máquina' : 'máquinas'}
@@ -124,13 +120,13 @@ export default function Machinery() {
         {/* Carousel Container */}
         {filteredMachinery.length > 0 ? (
           <div className="relative">
-            {/* Navigation Arrows - Solo mostrar si hay más items que los visibles */}
+            {/* Navigation Arrows */}
             {filteredMachinery.length > itemsToShow && (
               <>
                 <button
                   onClick={goToPrevious}
                   disabled={isTransitioning}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-6 z-10 bg-white hover:bg-gray-900 text-gray-900 hover:text-white p-4 rounded-full shadow-2xl transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-6 z-10 bg-white hover:bg-[#3d4e7c] text-gray-900 hover:text-white p-4 rounded-full shadow-lg transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200"
                   aria-label="Anterior"
                 >
                   <svg 
@@ -146,7 +142,7 @@ export default function Machinery() {
                 <button
                   onClick={goToNext}
                   disabled={isTransitioning}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-6 z-10 bg-white hover:bg-gray-900 text-gray-900 hover:text-white p-4 rounded-full shadow-2xl transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-6 z-10 bg-white hover:bg-[#3d4e7c] text-gray-900 hover:text-white p-4 rounded-full shadow-lg transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200"
                   aria-label="Siguiente"
                 >
                   <svg 
@@ -161,7 +157,7 @@ export default function Machinery() {
               </>
             )}
 
-            {/* Cards Container con animación suave */}
+            {/* Cards Container */}
             <div className="overflow-hidden px-2">
               <div 
                 className="flex transition-transform duration-500 ease-out gap-8"
@@ -191,7 +187,7 @@ export default function Machinery() {
           </div>
         )}
 
-        {/* Dots Navigation - REDUCIDO Y MÁS VISIBLE - Solo mostrar si hay más items que los visibles */}
+        {/* Dots Navigation */}
         {filteredMachinery.length > itemsToShow && totalDots > 1 && (
           <div className="flex justify-center items-center gap-2 mt-6">
             {Array.from({ length: totalDots }).map((_, index) => (
@@ -201,7 +197,7 @@ export default function Machinery() {
                 disabled={isTransitioning}
                 className={`transition-all duration-300 rounded-full disabled:cursor-not-allowed ${
                   currentIndex === index
-                    ? 'bg-gray-900 w-10 h-3'
+                    ? 'bg-[#ff7d6c] w-10 h-3'
                     : 'bg-gray-300 hover:bg-gray-400 w-3 h-3'
                 }`}
                 aria-label={`Ir a slide ${index + 1}`}
@@ -210,11 +206,11 @@ export default function Machinery() {
           </div>
         )}
 
-        {/* CTA Button - Espaciado reducido */}
+        {/* CTA Button */}
         <div className="text-center mt-8">
           <a
             href="#contacto"
-            className="inline-flex items-center px-8 py-4 bg-gray-900 text-white font-semibold rounded-lg shadow-lg hover:bg-gray-800 transition-all duration-300 hover:shadow-xl hover:scale-105"
+            className="inline-flex items-center px-8 py-4 bg-[#ff7d6c] text-white font-semibold rounded-lg shadow-md hover:bg-[#ff6b5a] transition-all duration-300 hover:shadow-lg hover:scale-105"
           >
             <span>Solicitar Cotización</span>
             <svg 

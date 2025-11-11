@@ -5,7 +5,7 @@ export const machineryData: Machinery[] = [
   {
     id: 'cf-02',
     name: 'Pala Cargadora XCMG LW180KV',
-    category: 'Cargadores',
+    category: 'Maquinaria Pesada',
     description: 'Pala cargadora que combina potencia, versatilidad y eficiencia. Equipada con motor YTO de 80 HP y transmisión Powershift 4x4, ofrece gran capacidad de carga y excelente maniobrabilidad. Ideal para movimiento de tierra, carga de áridos y tareas de construcción o agrícolas.',
     specs: {
       weight: '6.200 kg',
@@ -68,7 +68,7 @@ export const machineryData: Machinery[] = [
   {
     id: 'ex-01',
     name: 'Excavadora Shantui SE210-9',
-    category: 'Excavación',
+    category: 'Maquinaria Pesada',
     description: 'Excavadora de orugas de alto rendimiento. Equipada con motor Cummins B5.9-C de 6 cilindros y capacidad de balde de 0.9 m³. Ideal para excavaciones, movimientos de tierra y trabajos de construcción pesada.',
     specs: {
       weight: '20.800 kg',
@@ -90,7 +90,7 @@ export const machineryData: Machinery[] = [
   {
     id: 'mn-01',
     name: 'Motoniveladora John Deere 772G',
-    category: 'Nivelación',
+    category: 'Maquinaria Pesada',
     description: 'Motoniveladora 6×6 de alto rendimiento para nivelación y perfilado de caminos. Con transmisión PowerShift Plus de 8 velocidades y tracción en las 6 ruedas, ofrece precisión y control superiores en cualquier terreno.',
     specs: {
       weight: '17.530 - 20.500 kg',
@@ -113,7 +113,7 @@ export const machineryData: Machinery[] = [
   {
     id: 'rt-01',
     name: 'Rodillo Compactador Cummins T4F',
-    category: 'Compactación',
+    category: 'Maquinaria Pesada',
     description: 'Rodillo compactador de alto rendimiento con motor Cummins de 160 HP. Sistema vibratorio de doble frecuencia (32/36 Hz) y amplitud variable. Ideal para compactación de asfalto y bases. Cumple normas Tier 4 Final EPA / Etapa V UE.',
     specs: {
       weight: '11.709 kg',
@@ -136,7 +136,7 @@ export const machineryData: Machinery[] = [
   {
     id: 'plantas',
     name: 'Planta de Áridos',
-    category: 'Producción',
+    category: 'Plantas',
     description: 'Planta de Áridos para producción en sitio. Alta capacidad de producción y eficiencia energética. Perfecta para proyectos de gran envergadura que requieren producción continua de mezcla asfáltica.',
     specs: {
       capacity: '160-200 ton/h',
@@ -153,7 +153,46 @@ export const machineryData: Machinery[] = [
     ],
     available: true,
     pdfUrl: '/images/maquinaria/optimized/Plantas/ficha_tecnica.pdf'
-  }
+  },
+  {
+    id: 'ca-01',
+    name: 'Camión Aljibe Sinotruk HOWO A7',
+    category: 'Transporte',
+    description: 'Camión aljibe de alta capacidad marca Sinotruk modelo HOWO A7. Equipado con estanque de agua de gran volumen, ideal para control de polvo, riego de caminos y compactación en obras viales, mineras y de construcción. Robusto sistema de bombeo y aspersión para distribución uniforme del agua.',
+    specs: {
+      capacity: '15.000 L',
+      power: '371 HP',
+      configuration: '6x4',
+      pumpFlow: '600 L/min',
+      sprayWidth: '12-16 m'
+    },
+    image: '/images/maquinaria/optimized/CA-01/fotos/imagen1.jpg',
+    images: [
+      '/images/maquinaria/optimized/CA-01/fotos/imagen1.jpg',
+      '/images/maquinaria/optimized/CA-01/fotos/imagen2.jpg',
+      '/images/maquinaria/optimized/CA-01/fotos/imagen3.jpg',
+      '/images/maquinaria/optimized/CA-01/fotos/imagen4.jpg',
+    ],
+    available: true,
+    // pdfUrl: '/images/maquinaria/optimized/CA-01/ficha_tecnica.pdf'
+  },
+  // {
+  //   id: 'l200',
+  //   name: 'Mitsubishi L-200',
+  //   category: 'Camionetas',
+  //   description: 'Planta de Áridos para producción en sitio. Alta capacidad de producción y eficiencia energética. Perfecta para proyectos de gran envergadura que requieren producción continua de mezcla asfáltica.',
+  //   specs: {
+  //     capacity: '160-200 ton/h',
+  //     power: '320 HP',
+  //     mobility: 'Totalmente móvil'
+  //   },
+  //   image: '/images/maquinaria/optimized/Plantas/fotos/imagen10.jpg',
+  //   images: [
+  //     '/images/maquinaria/optimized/Plantas/fotos/imagen1.jpg',
+  //   ],
+  //   available: true,
+  //   pdfUrl: ''
+  // }
 ];
 
 // Función helper para obtener máquina por ID
