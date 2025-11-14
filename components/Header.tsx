@@ -2,6 +2,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 
 export default function Header() {
@@ -88,25 +89,38 @@ export default function Header() {
           {/* Logo */}
           <button 
             onClick={() => scrollToSection('inicio')} 
-            className="flex items-center group"
+            className="flex items-center group relative h-12"
           >
-            <div className="flex items-center">
-              <div className={`w-10 h-10 rounded-lg flex items-center justify-center mr-3 group-hover:scale-105 transition-transform ${
-                isScrolled ? 'bg-[#3d4e7c]' : 'bg-white/10'
-              }`}>
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <div>
-                <span className={`text-2xl font-bold transition-colors ${
-                  isScrolled ? 'text-gray-900' : 'text-white'
-                }`}>MPF</span>
-                <span className={`text-2xl font-light ml-1 transition-colors ${
-                  isScrolled ? 'text-gray-600' : 'text-white/80'
-                }`}>Rental</span>
-              </div>
+            {/* Logo para fondo azul (cuando NO está scrolled) */}
+            <div className={`absolute inset-0 transition-opacity duration-300 ${
+              isScrolled ? 'opacity-0' : 'opacity-100'
+            }`}>
+              <Image
+                src="/logo/mpf_rental_blanco.png"
+                alt="MPF Rental"
+                width={180}
+                height={48}
+                className="h-12 w-auto object-contain group-hover:scale-105 transition-transform"
+                priority
+              />
             </div>
+            
+            {/* Logo para fondo blanco (cuando está scrolled) */}
+            <div className={`absolute inset-0 transition-opacity duration-300 ${
+              isScrolled ? 'opacity-100' : 'opacity-0'
+            }`}>
+              <Image
+                src="/logo/mpf_rental_morado.png"
+                alt="MPF Rental"
+                width={180}
+                height={48}
+                className="h-12 w-auto object-contain group-hover:scale-105 transition-transform"
+                priority
+              />
+            </div>
+            
+            {/* Espaciador invisible para mantener el espacio */}
+            <div className="w-[180px] h-12"></div>
           </button>
 
           {/* Desktop Navigation */}

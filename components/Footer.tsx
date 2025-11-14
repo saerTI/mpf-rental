@@ -1,6 +1,8 @@
 // components/Footer.tsx
 'use client';
 
+import Image from 'next/image';
+
 export default function Footer() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -23,16 +25,15 @@ export default function Footer() {
         <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <div className="flex items-center mb-4">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <div>
-                <span className="text-2xl font-bold">MPF</span>
-                <span className="text-2xl font-light ml-1">Rental</span>
-              </div>
+            {/* Logo */}
+            <div className="mb-4">
+              <Image
+                src="/logo/mpf_rental_blanco.png"
+                alt="MPF Rental"
+                width={180}
+                height={48}
+                className="h-10 w-auto object-contain"
+              />
             </div>
             <p className="text-gray-400 mb-6 max-w-md">
               Especialistas en arriendo de maquinaria para construcción y reparación de caminos.
@@ -42,7 +43,7 @@ export default function Footer() {
             <div className="flex space-x-3">
               <a 
                 href="#" 
-                className="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors"
+                className="w-10 h-10 bg-gray-800 hover:bg-[#ff7d6c] rounded-lg flex items-center justify-center transition-colors"
                 aria-label="Facebook"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -51,7 +52,7 @@ export default function Footer() {
               </a>
               <a 
                 href="#" 
-                className="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors"
+                className="w-10 h-10 bg-gray-800 hover:bg-[#ff7d6c] rounded-lg flex items-center justify-center transition-colors"
                 aria-label="Instagram"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -60,7 +61,7 @@ export default function Footer() {
               </a>
               <a 
                 href="#" 
-                className="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors"
+                className="w-10 h-10 bg-gray-800 hover:bg-[#ff7d6c] rounded-lg flex items-center justify-center transition-colors"
                 aria-label="LinkedIn"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -114,11 +115,11 @@ export default function Footer() {
             <h3 className="text-sm font-semibold uppercase tracking-wider mb-4 text-gray-400">Contacto</h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href="tel:+56912345678" className="text-gray-400 hover:text-white transition flex items-center gap-2">
+                <a href="tel:+56975372435" className="text-gray-400 hover:text-white transition flex items-center gap-2">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  +56 9 1234 5678
+                  +56 9 7537 2435
                 </a>
               </li>
               <li>
@@ -144,7 +145,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 py-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="flex items-center gap-3">
-              <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-[#ff7d6c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <span className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Horario de Atención</span>
@@ -152,11 +153,11 @@ export default function Footer() {
             <div className="flex flex-wrap gap-4 text-sm">
               <div className="flex items-center gap-2">
                 <span className="text-gray-400">Lunes a Viernes:</span>
-                <span className="font-semibold text-white">08:30 - 18:00</span>
+                <span className="font-semibold text-white">08:00 - 18:00</span>
               </div>
               <div className="w-px h-5 bg-gray-800"></div>
               <div className="flex items-center gap-2">
-                <span className="text-gray-400">Sábado y Domingo:</span>
+                <span className="text-gray-400">Sábados y Domingos</span>
                 <span className="font-semibold text-red-400">Cerrado</span>
               </div>
             </div>

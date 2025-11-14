@@ -130,7 +130,7 @@ export default function Machinery() {
                   aria-label="Anterior"
                 >
                   <svg 
-                    className="w-6 h-6 transition-transform group-hover:-translate-x-1" 
+                    className="w-8 h-8 transition-transform group-hover:-translate-x-1" 
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"
@@ -146,7 +146,7 @@ export default function Machinery() {
                   aria-label="Siguiente"
                 >
                   <svg 
-                    className="w-6 h-6 transition-transform group-hover:translate-x-1" 
+                    className="w-8 h-8 transition-transform group-hover:translate-x-1" 
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"
