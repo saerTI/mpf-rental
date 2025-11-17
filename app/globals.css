@@ -7,6 +7,16 @@ html {
   scroll-behavior: smooth;
 }
 
+/* PREVENIR SCROLL HORIZONTAL GLOBAL */
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 @layer utilities {
   .animate-fade-in {
     animation: fadeIn 0.8s ease-in;

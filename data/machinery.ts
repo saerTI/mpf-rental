@@ -176,23 +176,29 @@ export const machineryData: Machinery[] = [
     available: true,
     // pdfUrl: '/images/maquinaria/optimized/CA-01/ficha_tecnica.pdf'
   },
-  // {
-  //   id: 'l200',
-  //   name: 'Mitsubishi L-200',
-  //   category: 'Camionetas',
-  //   description: 'Planta de Áridos para producción en sitio. Alta capacidad de producción y eficiencia energética. Perfecta para proyectos de gran envergadura que requieren producción continua de mezcla asfáltica.',
-  //   specs: {
-  //     capacity: '160-200 ton/h',
-  //     power: '320 HP',
-  //     mobility: 'Totalmente móvil'
-  //   },
-  //   image: '/images/maquinaria/optimized/Plantas/fotos/imagen10.jpg',
-  //   images: [
-  //     '/images/maquinaria/optimized/Plantas/fotos/imagen1.jpg',
-  //   ],
-  //   available: true,
-  //   pdfUrl: ''
-  // }
+  {
+    id: 'cr-01',
+    name: 'Camión Cama Baja',
+    category: 'Transporte',
+    description: 'Camión cama baja especializado en transporte de maquinaria pesada. Diseñado para el traslado seguro de equipos de construcción, excavadoras, palas cargadoras y otras máquinas. Plataforma reforzada con rampas hidráulicas para carga y descarga eficiente. Ideal para movilización de equipos entre faenas en Chillán, Los Ángeles, Temuco, Valdivia, Osorno y Puerto Montt.',
+    specs: {
+      capacity: '25-30 ton',
+      platformLength: '8-10 m',
+      platformWidth: '2,5 m',
+      loadingSystem: 'Rampas hidráulicas',
+      configuration: '6x4'
+    },
+    image: '/images/maquinaria/optimized/CR-01/fotos/imagen1.jpeg',
+    images: [
+      '/images/maquinaria/optimized/CR-01/fotos/imagen1.jpeg',
+      '/images/maquinaria/optimized/CR-01/fotos/imagen2.jpeg',
+      '/images/maquinaria/optimized/CR-01/fotos/imagen3.jpeg',
+      '/images/maquinaria/optimized/CR-01/fotos/imagen4.jpeg',
+      '/images/maquinaria/optimized/CR-01/fotos/imagen5.jpeg',
+    ],
+    available: true
+    // No tiene ficha técnica
+  },
 ];
 
 // Función helper para obtener máquina por ID

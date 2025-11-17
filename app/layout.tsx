@@ -9,15 +9,15 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'MPF Rental - Arriendo de Maquinaria para Construcción de Caminos',
-  description: 'Arriendo de maquinaria especializada para construcción y reparación de caminos. Equipos de pavimentación, compactación y más. Servicio profesional en Valdivia, Chile.',
-  keywords: 'arriendo maquinaria, construcción caminos, pavimentación, compactación, maquinaria pesada, Valdivia',
+  title: 'MPF Rental - Arriendo de Maquinaria Pesada | Chillán, Temuco, Valdivia, Osorno',
+  description: 'Arriendo de maquinaria pesada para construcción y reparación de caminos. Excavadoras, palas cargadoras, motoniveladoras y más. Servicio en Chillán, Los Ángeles, Temuco, Valdivia, Osorno y Puerto Montt.',
+  keywords: 'arriendo maquinaria, maquinaria pesada, construcción caminos, pavimentación, compactación, excavadora, pala cargadora, Chillán, Los Ángeles, Temuco, Valdivia, Osorno, Puerto Montt',
   
   // Open Graph
   openGraph: {
-    title: 'MPF Rental - Arriendo de Maquinaria para Construcción',
-    description: 'Arriendo de maquinaria especializada para construcción y reparación de caminos en Valdivia, Chile.',
-    url: 'https://mpfrental.cl', // Cambia por tu dominio
+    title: 'MPF Rental - Arriendo de Maquinaria Pesada en la Zona Sur',
+    description: 'Arriendo de maquinaria pesada para construcción de caminos. Servicio profesional en Chillán, Los Ángeles, Temuco, Valdivia, Osorno y Puerto Montt.',
+    url: 'https://mpfrental.cl',
     siteName: 'MPF Rental',
     locale: 'es_CL',
     type: 'website',
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
   // Twitter Card
   twitter: {
     card: 'summary_large_image',
-    title: 'MPF Rental - Arriendo de Maquinaria',
-    description: 'Arriendo de maquinaria especializada para construcción de caminos en Valdivia, Chile.',
+    title: 'MPF Rental - Arriendo de Maquinaria Pesada',
+    description: 'Arriendo de maquinaria para construcción de caminos en la zona sur de Chile.',
   },
 
   // Favicons y App Icons
@@ -71,8 +71,33 @@ export default function RootLayout({
   return (
     <html lang="es" className="scroll-smooth">
       <head>
-        {/* Meta adicionales que RealFaviconGenerator puede generar */}
         <meta name="theme-color" content="#3d4e7c" />
+        {/* Schema.org structured data para SEO local */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'LocalBusiness',
+              name: 'MPF Rental',
+              description: 'Arriendo de maquinaria pesada para construcción de caminos',
+              url: 'https://mpfrental.cl',
+              areaServed: [
+                { '@type': 'City', name: 'Chillán' },
+                { '@type': 'City', name: 'Los Ángeles' },
+                { '@type': 'City', name: 'Temuco' },
+                { '@type': 'City', name: 'Valdivia' },
+                { '@type': 'City', name: 'Osorno' },
+                { '@type': 'City', name: 'Puerto Montt' },
+              ],
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Valdivia',
+                addressCountry: 'CL',
+              },
+            }),
+          }}
+        />
       </head>
       <body className={inter.className}>
         <Header />

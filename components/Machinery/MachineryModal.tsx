@@ -65,7 +65,12 @@ export default function MachineryModal({ machinery, isOpen, onClose }: Machinery
     amplitude: 'Amplitud',
     fuelTank: 'Tanque Combustible',
     configuration: 'Configuración',
-    mobility: 'Movilidad'
+    mobility: 'Movilidad',
+    pumpFlow: 'Flujo de Bomba',
+    sprayWidth: 'Ancho de Aspersión',
+    platformLength: 'Largo Plataforma',
+    platformWidth: 'Ancho Plataforma',
+    loadingSystem: 'Sistema de Carga',
   };
 
   const handleWhatsApp = () => {
@@ -143,7 +148,7 @@ export default function MachineryModal({ machinery, isOpen, onClose }: Machinery
             </div>
 
             {/* Right: Details - Scrollable */}
-            <div className="p-8 overflow-y-auto">
+            <div className="p-8 overflow-y-auto pb-24">
               {/* Category Badge */}
               <div className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mb-4">
                 {machinery.category}
@@ -230,7 +235,7 @@ export default function MachineryModal({ machinery, isOpen, onClose }: Machinery
               </div>
 
               {/* Contact Info */}
-              <div className="p-4 bg-blue-50 rounded-lg">
+              <div className="p-4 bg-blue-50 rounded-lg mb-8">
                 <div className="flex items-center text-sm text-blue-900">
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

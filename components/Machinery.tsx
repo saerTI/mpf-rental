@@ -1,4 +1,3 @@
-// components/Machinery.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -6,9 +5,28 @@ import { machineryData } from '@/data/machinery';
 import MachineryCard from './Machinery/MachineryCard';
 
 export default function Machinery() {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [itemsToShow, setItemsToShow] = useState(3);
+
+  // Detectar tamaño de pantalla para responsive
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setItemsToShow(1);
+      } else if (width < 1024) {
+        setItemsToShow(2);
+      } else {
+        setItemsToShow(3);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const allCategories = ['all', ...new Set(machineryData.map(m => m.category))];
   
@@ -20,25 +38,6 @@ export default function Machinery() {
   const filteredMachinery = selectedCategory === 'all' 
     ? machineryData 
     : machineryData.filter(m => m.category === selectedCategory);
-
-  const getItemsToShow = () => {
-    if (typeof window === 'undefined') return 3;
-    if (window.innerWidth < 768) return 1;
-    if (window.innerWidth < 1024) return 2;
-    return 3;
-  };
-
-  const [itemsToShow, setItemsToShow] = useState(3);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setItemsToShow(getItemsToShow());
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   const maxIndex = Math.max(0, filteredMachinery.length - itemsToShow);
 
@@ -76,29 +75,35 @@ export default function Machinery() {
 
   const totalDots = maxIndex + 1;
 
+  // CORRECCIÓN: Cálculo preciso del ancho sin gaps
+  const cardWidth = 100 / itemsToShow;
+
   return (
-    <section id="maquinaria" className="pt-16 pb-16 bg-gray-50 scroll-mt-[80px]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section 
+      id="maquinaria" 
+      className="min-h-screen flex flex-col bg-gradient-to-b from-white to-gray-50 scroll-mt-0 py-12 md:py-16 lg:py-16"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+        <div className="text-center mb-6 md:mb-8">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 md:mb-3 tracking-tight">
             Nuestra Maquinaria
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-sm md:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto px-4">
             Equipos de última generación para sus proyectos de construcción
           </p>
         </div>
 
-        {/* Filtros de categoría */}
-        <div className="flex flex-wrap justify-center gap-2 mb-6">
+        {/* Filtros */}
+        <div className="flex flex-wrap justify-center gap-2 mb-4 md:mb-6 px-2">
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => handleCategoryChange(category.id)}
-              className={`px-5 py-2 rounded-lg font-medium transition-all duration-300 text-sm ${
+              className={`px-4 md:px-5 py-2 rounded-lg font-medium transition-all duration-300 text-xs md:text-sm ${
                 selectedCategory === category.id
-                  ? 'bg-[#3d4e7c] text-white shadow-md'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 shadow-sm hover:shadow-md border border-gray-200'
+                  ? 'bg-[#3d4e7c] text-white shadow-lg shadow-[#3d4e7c]/20'
+                  : 'bg-white text-gray-700 hover:bg-gray-50 shadow-sm hover:shadow-md border border-gray-200'
               }`}
             >
               {category.name}
@@ -106,31 +111,27 @@ export default function Machinery() {
           ))}
         </div>
 
-        {/* Contador de resultados */}
-        <div className="text-center mb-6">
-          <p className="text-gray-600 text-sm">
-            Mostrando{' '}
-            <span className="font-semibold text-[#3d4e7c]">
-              {filteredMachinery.length}
-            </span>{' '}
-            {filteredMachinery.length === 1 ? 'máquina' : 'máquinas'}
+        {/* Contador */}
+        <div className="text-center mb-4 md:mb-6">
+          <p className="text-xs text-gray-500">
+            {filteredMachinery.length} {filteredMachinery.length === 1 ? 'máquina disponible' : 'máquinas disponibles'}
           </p>
         </div>
 
         {/* Carousel Container */}
         {filteredMachinery.length > 0 ? (
           <div className="relative">
-            {/* Navigation Arrows */}
+            {/* Navigation Arrows - Desktop */}
             {filteredMachinery.length > itemsToShow && (
               <>
                 <button
                   onClick={goToPrevious}
                   disabled={isTransitioning}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-6 z-10 bg-white hover:bg-[#3d4e7c] text-gray-900 hover:text-white p-4 rounded-full shadow-lg transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200"
+                  className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 xl:-translate-x-6 z-10 bg-white hover:bg-[#3d4e7c] text-gray-900 hover:text-white p-3 xl:p-4 rounded-full shadow-lg transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 items-center justify-center"
                   aria-label="Anterior"
                 >
                   <svg 
-                    className="w-8 h-8 transition-transform group-hover:-translate-x-1" 
+                    className="w-6 h-6 xl:w-8 xl:h-8 transition-transform group-hover:-translate-x-1" 
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"
@@ -142,11 +143,11 @@ export default function Machinery() {
                 <button
                   onClick={goToNext}
                   disabled={isTransitioning}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-6 z-10 bg-white hover:bg-[#3d4e7c] text-gray-900 hover:text-white p-4 rounded-full shadow-lg transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200"
+                  className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 xl:translate-x-6 z-10 bg-white hover:bg-[#3d4e7c] text-gray-900 hover:text-white p-3 xl:p-4 rounded-full shadow-lg transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 items-center justify-center"
                   aria-label="Siguiente"
                 >
                   <svg 
-                    className="w-8 h-8 transition-transform group-hover:translate-x-1" 
+                    className="w-6 h-6 xl:w-8 xl:h-8 transition-transform group-hover:translate-x-1" 
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"
@@ -157,20 +158,20 @@ export default function Machinery() {
               </>
             )}
 
-            {/* Cards Container */}
-            <div className="overflow-hidden px-2">
+            {/* Cards Container - CORREGIDO: Sin gap en el flex, usando padding en tarjetas */}
+            <div className="overflow-hidden">
               <div 
-                className="flex transition-transform duration-500 ease-out gap-8"
+                className="flex transition-transform duration-500 ease-out"
                 style={{
-                  transform: `translateX(-${currentIndex * (100 / itemsToShow)}%)`
+                  transform: `translateX(-${currentIndex * cardWidth}%)`
                 }}
               >
-                {filteredMachinery.map((machinery) => (
+                {filteredMachinery.map((machinery, index) => (
                   <div
                     key={machinery.id}
-                    className="flex-shrink-0"
-                    style={{
-                      width: `calc(${100 / itemsToShow}% - ${(itemsToShow - 1) * 32 / itemsToShow}px)`
+                    className="flex-shrink-0 px-2 md:px-3 lg:px-4"
+                    style={{ 
+                      width: `${cardWidth}%`
                     }}
                   >
                     <MachineryCard machinery={machinery} />
@@ -178,51 +179,58 @@ export default function Machinery() {
                 ))}
               </div>
             </div>
+
+            {/* Dots Navigation */}
+            {filteredMachinery.length > itemsToShow && (
+              <div className="flex justify-center gap-2 mt-6 md:mt-8">
+                {Array.from({ length: totalDots }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      currentIndex === index
+                        ? 'bg-[#3d4e7c] w-8'
+                        : 'bg-gray-300 w-2 hover:bg-gray-400'
+                    }`}
+                    aria-label={`Ir a slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+            )}
+
+            {/* Botones de navegación mobile */}
+            {filteredMachinery.length > itemsToShow && (
+              <div className="flex lg:hidden justify-center gap-3 mt-4">
+                <button
+                  onClick={goToPrevious}
+                  disabled={isTransitioning}
+                  className="bg-gradient-to-r from-[#3d4e7c] to-[#2d3e5f] hover:from-[#ff7d6c] hover:to-[#ff6b5a] text-white p-3 rounded-lg shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Anterior"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={goToNext}
+                  disabled={isTransitioning}
+                  className="bg-gradient-to-r from-[#3d4e7c] to-[#2d3e5f] hover:from-[#ff7d6c] hover:to-[#ff6b5a] text-white p-3 rounded-lg shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Siguiente"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            )}
           </div>
         ) : (
-          <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">
+          <div className="text-center py-20">
+            <p className="text-gray-400 text-base md:text-lg">
               No se encontraron máquinas en esta categoría
             </p>
           </div>
         )}
-
-        {/* Dots Navigation */}
-        {filteredMachinery.length > itemsToShow && totalDots > 1 && (
-          <div className="flex justify-center items-center gap-2 mt-6">
-            {Array.from({ length: totalDots }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                disabled={isTransitioning}
-                className={`transition-all duration-300 rounded-full disabled:cursor-not-allowed ${
-                  currentIndex === index
-                    ? 'bg-[#ff7d6c] w-10 h-3'
-                    : 'bg-gray-300 hover:bg-gray-400 w-3 h-3'
-                }`}
-                aria-label={`Ir a slide ${index + 1}`}
-              />
-            ))}
-          </div>
-        )}
-
-        {/* CTA Button */}
-        <div className="text-center mt-8">
-          <a
-            href="#contacto"
-            className="inline-flex items-center px-8 py-4 bg-[#ff7d6c] text-white font-semibold rounded-lg shadow-md hover:bg-[#ff6b5a] transition-all duration-300 hover:shadow-lg hover:scale-105"
-          >
-            <span>Solicitar Cotización</span>
-            <svg 
-              className="w-5 h-5 ml-2" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </a>
-        </div>
       </div>
     </section>
   );

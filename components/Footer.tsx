@@ -123,11 +123,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:contacto@mpfrental.cl" className="text-gray-400 hover:text-white transition flex items-center gap-2">
+                <a href="mailto:ventas@mpfrental.cl" className="text-gray-400 hover:text-white transition flex items-center gap-2">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  contacto@mpfrental.cl
+                  ventas@mpfrental.cl
                 </a>
               </li>
               <li className="text-gray-400 flex items-center gap-2">
@@ -161,6 +161,23 @@ export default function Footer() {
                 <span className="font-semibold text-red-400">Cerrado</span>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Coverage Area - SEO */}
+        <div className="border-t border-gray-800 py-8">
+          <div className="text-center">
+            <p className="text-sm text-gray-400 mb-3 uppercase tracking-wider font-semibold">
+              Cobertura de Servicio
+            </p>
+            <p className="text-gray-300 text-base">
+              Chillán <span className="text-gray-600 mx-2">•</span> 
+              Los Ángeles <span className="text-gray-600 mx-2">•</span> 
+              Temuco <span className="text-gray-600 mx-2">•</span> 
+              Valdivia <span className="text-gray-600 mx-2">•</span> 
+              Osorno <span className="text-gray-600 mx-2">•</span> 
+              Puerto Montt
+            </p>
           </div>
         </div>
 
