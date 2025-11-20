@@ -119,7 +119,7 @@ export default function Footer() {
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  +56 9 7537 2435
+                  +56 9 7808 9545
                 </a>
               </li>
               <li>
@@ -143,22 +143,22 @@ export default function Footer() {
 
         {/* Business Hours - Minimalista */}
         <div className="border-t border-gray-800 py-8">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-4">
             <div className="flex items-center gap-3">
               <svg className="w-5 h-5 text-[#ff7d6c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <span className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Horario de Atención</span>
             </div>
-            <div className="flex flex-wrap gap-4 text-sm">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
               <div className="flex items-center gap-2">
-                <span className="text-gray-400">Lunes a Viernes:</span>
-                <span className="font-semibold text-white">08:00 - 18:00</span>
+                <span className="text-gray-400">Lun - Jue:</span>
+                <span className="font-semibold text-white">08:30 - 18:00</span>
               </div>
-              <div className="w-px h-5 bg-gray-800"></div>
+              <div className="hidden md:block w-px h-4 bg-gray-700"></div>
               <div className="flex items-center gap-2">
-                <span className="text-gray-400">Sábados y Domingos</span>
-                <span className="font-semibold text-red-400">Cerrado</span>
+                <span className="text-gray-400">Viernes:</span>
+                <span className="font-semibold text-white">08:30 - 17:00</span>
               </div>
             </div>
           </div>

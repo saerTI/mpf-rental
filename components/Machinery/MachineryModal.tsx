@@ -74,7 +74,7 @@ export default function MachineryModal({ machinery, isOpen, onClose }: Machinery
   };
 
   const handleWhatsApp = () => {
-    const phoneNumber = '56912345678';
+    const phoneNumber = '56978089545';
     const message = `¡Hola! Me interesa el arriendo de: ${machinery.name}. ¿Podrían darme más información sobre disponibilidad y tarifas?`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -224,7 +224,7 @@ export default function MachineryModal({ machinery, isOpen, onClose }: Machinery
                   WhatsApp
                 </button>
                 <a
-                  href="tel:+56912345678"
+                  href="tel:+56978089545"
                   className="flex-1 border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition text-center flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

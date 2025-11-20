@@ -14,7 +14,7 @@ export default function MachineryCard({ machinery }: MachineryCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleWhatsApp = () => {
-    const phoneNumber = '56912345678';
+    const phoneNumber = '56978089545';
     const message = `¡Hola! Me interesa el arriendo de: ${machinery.name}. ¿Podrían darme más información?`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;

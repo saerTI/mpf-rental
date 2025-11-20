@@ -186,7 +186,7 @@ export default function Header() {
           {/* CTA Button */}
           <div className="hidden md:flex items-center gap-3">
             <a 
-              href="tel:+56912345678"
+              href="tel:+56978089545"
               className={`p-2 transition-colors ${
                 isScrolled ? 'text-gray-600 hover:text-[#ff7d6c]' : 'text-white/80 hover:text-white'
               }`}

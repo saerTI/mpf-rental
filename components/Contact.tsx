@@ -29,7 +29,7 @@ export default function Contact() {
               </svg>
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-2">Teléfono</h3>
-            <p className="text-[#ff7d6c] font-semibold">+56 9 7537 2435</p>
+            <p className="text-[#ff7d6c] font-semibold">+56 9 7808 9545</p>
           </a>
 
           {/* Email */}
@@ -66,8 +66,10 @@ export default function Contact() {
               </svg>
             </div>
             <h3 className="text-lg font-bold mb-2">Horario</h3>
-            <p className="text-blue-100">Lun - Vie:</p>
-            <p className="font-semibold">8:00 - 18:00</p>
+            <p className="text-blue-100">Lun - Jue:</p>
+            <p className="font-semibold">8:30 - 18:00</p>
+            <p className="text-blue-100">Vie:</p>
+            <p className="font-semibold">8:30 - 17:00</p>
           </div>
         </div>
       </div>

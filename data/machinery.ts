@@ -53,7 +53,9 @@ export const machineryData: Machinery[] = [
     category: 'Transporte',
     description: 'Camión tolva de alta resistencia marca JAC. Diseñado para transporte pesado de materiales en obras de construcción y movimientos de tierra. Robusto y confiable para trabajos exigentes.',
     specs: {
+      power: '350 HP',
       capacity: '15 m³',
+      weight: '14.850 kg (tara)',
       configuration: '6x4'
     },
     image: '/images/maquinaria/optimized/CT-02/fotos/imagen1.jpg',
@@ -62,8 +64,8 @@ export const machineryData: Machinery[] = [
       '/images/maquinaria/optimized/CT-02/fotos/imagen2.jpg',
       '/images/maquinaria/optimized/CT-02/fotos/imagen3.jpg',
     ],
-    available: true
-    // No tiene ficha técnica
+    available: true,
+    pdfUrl: '/images/maquinaria/optimized/CT-02/ficha_tecnica.pdf'
   },
   {
     id: 'ex-01',
@@ -152,7 +154,6 @@ export const machineryData: Machinery[] = [
       '/images/maquinaria/optimized/Plantas/fotos/imagen12.jpg',
     ],
     available: true,
-    pdfUrl: '/images/maquinaria/optimized/Plantas/ficha_tecnica.pdf'
   },
   {
     id: 'ca-01',
