@@ -9,12 +9,13 @@ export interface Machinery {
     power?: string;
     capacity?: string;
     width?: string;
-    [key: string]: string | undefined; // Para permitir specs adicionales
+    production?: string; // Nueva propiedad
+    [key: string]: string | undefined;
   };
   image: string;
-  images?: string[]; // Galería de imágenes adicionales
+  images?: string[];
   available: boolean;
-  pdfUrl?: string; // URL del PDF con especificaciones técnicas
+  pdfUrl?: string;
 }
 
 export interface ContactForm {

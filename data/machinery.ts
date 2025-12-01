@@ -139,11 +139,12 @@ export const machineryData: Machinery[] = [
     id: 'plantas',
     name: 'Planta de Áridos',
     category: 'Plantas',
-    description: 'Planta de Áridos para producción en sitio. Alta capacidad de producción y eficiencia energética. Perfecta para proyectos de gran envergadura que requieren producción continua de mezcla asfáltica.',
+    description: 'Planta de Áridos para producción en sitio. Alta capacidad de producción y eficiencia energética. Incluye chancador primario y seleccionadora. Perfecta para proyectos de gran envergadura que requieren producción continua de mezcla asfáltica.',
     specs: {
       capacity: '160-200 ton/h',
       power: '320 HP',
-      mobility: 'Totalmente móvil'
+      mobility: 'Totalmente móvil',
+      production: 'Base chancada 30% - 50%'
     },
     image: '/images/maquinaria/optimized/Plantas/fotos/imagen10.jpg',
     images: [
@@ -175,19 +176,20 @@ export const machineryData: Machinery[] = [
       '/images/maquinaria/optimized/CA-01/fotos/imagen4.jpg',
     ],
     available: true,
-    // pdfUrl: '/images/maquinaria/optimized/CA-01/ficha_tecnica.pdf'
+    pdfUrl: '/images/maquinaria/optimized/CA-01/ficha_tecnica.pdf'
   },
   {
     id: 'cr-01',
-    name: 'Camión Cama Baja',
+    name: 'Camión Cama Baja Mercedes-Benz L1634',
     category: 'Transporte',
-    description: 'Camión cama baja especializado en transporte de maquinaria pesada. Diseñado para el traslado seguro de equipos de construcción, excavadoras, palas cargadoras y otras máquinas. Plataforma reforzada con rampas hidráulicas para carga y descarga eficiente. Ideal para movilización de equipos entre faenas en Chillán, Los Ángeles, Temuco, Valdivia, Osorno y Puerto Montt.',
+    description: 'Camión cama baja Mercedes-Benz extra pesado especializado en transporte de maquinaria pesada. Motor OM 457 LA III turbocooler de 340 cv con transmisión ZF de 16 velocidades. Diseñado para el traslado seguro de equipos de construcción, excavadoras, palas cargadoras y otras máquinas. Equipado con sistema de freno motor Top Brake y bloqueo de diferencial. Ideal para movilización de equipos entre faenas.',
     specs: {
-      capacity: '25-30 ton',
-      platformLength: '8-10 m',
-      platformWidth: '2,5 m',
-      loadingSystem: 'Rampas hidráulicas',
-      configuration: '6x4'
+      power: '340 HP @ 1900 rpm',
+      weight: '6.780 kg (tara)',
+      grossWeight: '17.300 kg',
+      maxLoad: '10.520 kg',
+      transmission: 'ZF 16S-1650',
+      configuration: '4x2'
     },
     image: '/images/maquinaria/optimized/CR-01/fotos/imagen1.jpeg',
     images: [
@@ -197,8 +199,8 @@ export const machineryData: Machinery[] = [
       '/images/maquinaria/optimized/CR-01/fotos/imagen4.jpeg',
       '/images/maquinaria/optimized/CR-01/fotos/imagen5.jpeg',
     ],
-    available: true
-    // No tiene ficha técnica
+    available: true,
+    pdfUrl: '/images/maquinaria/optimized/CR-01/ficha_tecnica.pdf'
   },
 ];
 
