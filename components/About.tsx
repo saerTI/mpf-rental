@@ -3,8 +3,8 @@
 
 export default function About() {
   return (
-    <section 
-      id="nosotros" 
+    <section
+      id="nosotros"
       className="min-h-screen flex items-center bg-white scroll-mt-0 py-24 lg:py-32"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full">
@@ -15,11 +15,11 @@ export default function About() {
               Sobre MPF Rental
             </h2>
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-              Somos una empresa especializada en el arriendo de maquinaria para construcción y reparación de caminos. 
+              Somos una empresa especializada en el arriendo de maquinaria para construcción y reparación de caminos.
               Contamos con equipos de última tecnología y un equipo profesional comprometido con la excelencia.
             </p>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              Nuestra experiencia en el sector nos permite ofrecer soluciones integrales para proyectos de 
+              Nuestra experiencia en el sector nos permite ofrecer soluciones integrales para proyectos de
               pavimentación, compactación y mantenimiento de vías.
             </p>
 
@@ -42,31 +42,46 @@ export default function About() {
 
           {/* Features Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="bg-gray-900 text-white p-8 rounded-2xl">
-              <div className="text-4xl mb-4">🛡️</div>
-              <h3 className="text-xl font-bold mb-3">Confiabilidad</h3>
-              <p className="text-gray-300">
+            {/* Confiabilidad - Blue Accent */}
+            <div className="bg-white p-8 rounded-2xl border-t-4 border-t-[#3d4e7c] shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-x border-b border-gray-100">
+              <div className="w-14 h-14 rounded-xl bg-blue-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-3xl">🛡️</div>
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">Confiabilidad</h3>
+              <p className="text-gray-600">
                 Equipos certificados y en perfectas condiciones
               </p>
             </div>
-            <div className="bg-blue-600 text-white p-8 rounded-2xl">
-              <div className="text-4xl mb-4">⏰</div>
-              <h3 className="text-xl font-bold mb-3">Disponibilidad</h3>
-              <p className="text-blue-100">
+
+            {/* Disponibilidad - Blue Accent */}
+            <div className="bg-white p-8 rounded-2xl border-t-4 border-t-[#ff7d6c] shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-x border-b border-gray-100">
+              <div className="w-14 h-14 rounded-xl bg-[#3d4e7c]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-3xl">⏰</div>
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">Disponibilidad</h3>
+              <p className="text-gray-600">
                 Servicio 24/7 para emergencias
               </p>
             </div>
-            <div className="bg-purple-600 text-white p-8 rounded-2xl">
-              <div className="text-4xl mb-4">👥</div>
-              <h3 className="text-xl font-bold mb-3">Experiencia</h3>
-              <p className="text-purple-100">
+
+            {/* Experiencia - Orange Accent */}
+            <div className="bg-white p-8 rounded-2xl border-t-4 border-t-[#ff7d6c] shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-x border-b border-gray-100">
+              <div className="w-14 h-14 rounded-xl bg-[#ff7d6c]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-3xl">👥</div>
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">Experiencia</h3>
+              <p className="text-gray-600">
                 Equipo técnico especializado
               </p>
             </div>
-            <div className="bg-green-600 text-white p-8 rounded-2xl">
-              <div className="text-4xl mb-4">⚡</div>
-              <h3 className="text-xl font-bold mb-3">Innovación</h3>
-              <p className="text-green-100">
+
+            {/* Innovación - Blue Accent */}
+            <div className="bg-white p-8 rounded-2xl border-t-4 border-t-[#5169a0] shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-x border-b border-gray-100">
+              <div className="w-14 h-14 rounded-xl bg-[#5169a0]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-3xl">⚡</div>
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">Innovación</h3>
+              <p className="text-gray-600">
                 Tecnología de última generación
               </p>
             </div>

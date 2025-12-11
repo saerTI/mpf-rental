@@ -139,9 +139,9 @@ export const machineryData: Machinery[] = [
     id: 'plantas',
     name: 'Planta de Áridos',
     category: 'Plantas',
-    description: 'Planta de Áridos para producción en sitio. Alta capacidad de producción y eficiencia energética. Incluye chancador primario y seleccionadora. Perfecta para proyectos de gran envergadura que requieren producción continua de mezcla asfáltica.',
+    description: 'Planta de Áridos para producción en sitio. Alta capacidad de producción y eficiencia energética. Incluye chancador primario y seleccionadora.',
     specs: {
-      capacity: '160-200 ton/h',
+      capacity: '45-100 ton/h',
       power: '320 HP',
       mobility: 'Totalmente móvil',
       production: 'Base chancada 30% - 50%'
