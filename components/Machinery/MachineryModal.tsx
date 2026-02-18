@@ -119,7 +119,7 @@ export default function MachineryModal({ machinery, isOpen, onClose }: Machinery
                 />
 
                 {!machinery.available && (
-                  <div className="absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
+                  <div className="absolute top-4 right-4 bg-rose-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
                     No disponible
                   </div>
                 )}
@@ -132,7 +132,7 @@ export default function MachineryModal({ machinery, isOpen, onClose }: Machinery
                     <button
                       key={idx}
                       onClick={() => setSelectedImage(idx)}
-                      className={`relative aspect-[4/3] rounded-lg overflow-hidden border-2 transition ${selectedImage === idx ? 'border-blue-500' : 'border-transparent hover:border-gray-500'
+                      className={`relative aspect-[4/3] rounded-lg overflow-hidden border-2 transition ${selectedImage === idx ? 'border-accent' : 'border-transparent hover:border-gray-500'
                         }`}
                     >
                       <Image
@@ -150,7 +150,7 @@ export default function MachineryModal({ machinery, isOpen, onClose }: Machinery
             {/* Right: Details - Scrollable */}
             <div className="p-8 overflow-y-auto pb-24">
               {/* Category Badge */}
-              <div className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mb-4">
+              <div className="inline-block bg-accent/10 text-accent font-bold px-3 py-1 rounded-full text-sm mb-4">
                 {machinery.category}
               </div>
 
@@ -234,9 +234,8 @@ export default function MachineryModal({ machinery, isOpen, onClose }: Machinery
                 </a>
               </div>
 
-              {/* Contact Info */}
-              <div className="p-4 bg-blue-50 rounded-lg mb-8">
-                <div className="flex items-center text-sm text-blue-900">
+              <div className="p-4 bg-accent/5 rounded-lg mb-8">
+                <div className="flex items-center text-sm text-accent">
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>

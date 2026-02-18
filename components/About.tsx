@@ -11,7 +11,7 @@ export default function About() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Contenido */}
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
               Sobre MPF Rental
             </h2>
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
@@ -26,15 +26,15 @@ export default function About() {
             {/* Estadísticas */}
             <div className="grid grid-cols-3 gap-6 mb-8">
               <div className="text-center">
-                <div className="text-4xl font-bold text-[#3d4e7c] mb-2">15+</div>
+                <div className="text-4xl font-bold text-navy mb-2">15+</div>
                 <div className="text-sm text-gray-600">Años de Experiencia</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-[#3d4e7c] mb-2">50+</div>
+                <div className="text-4xl font-bold text-navy mb-2">50+</div>
                 <div className="text-sm text-gray-600">Proyectos Completados</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-[#3d4e7c] mb-2">100%</div>
+                <div className="text-4xl font-bold text-navy mb-2">100%</div>
                 <div className="text-sm text-gray-600">Satisfacción</div>
               </div>
             </div>
@@ -43,8 +43,8 @@ export default function About() {
           {/* Features Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {/* Confiabilidad - Blue Accent */}
-            <div className="bg-white p-8 rounded-2xl border-t-4 border-t-[#3d4e7c] shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-x border-b border-gray-100">
-              <div className="w-14 h-14 rounded-xl bg-blue-50 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <div className="bg-white p-8 rounded-2xl border-t-4 border-t-navy shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-x border-b border-gray-100">
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <div className="text-3xl">🛡️</div>
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-900">Confiabilidad</h3>
@@ -53,9 +53,9 @@ export default function About() {
               </p>
             </div>
 
-            {/* Disponibilidad - Blue Accent */}
-            <div className="bg-white p-8 rounded-2xl border-t-4 border-t-[#ff7d6c] shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-x border-b border-gray-100">
-              <div className="w-14 h-14 rounded-xl bg-[#3d4e7c]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            {/* Disponibilidad - Accent Color */}
+            <div className="bg-white p-8 rounded-2xl border-t-4 border-t-accent shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-x border-b border-gray-100">
+              <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <div className="text-3xl">⏰</div>
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-900">Disponibilidad</h3>
@@ -64,9 +64,9 @@ export default function About() {
               </p>
             </div>
 
-            {/* Experiencia - Orange Accent */}
-            <div className="bg-white p-8 rounded-2xl border-t-4 border-t-[#ff7d6c] shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-x border-b border-gray-100">
-              <div className="w-14 h-14 rounded-xl bg-[#ff7d6c]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            {/* Experiencia - Accent Color */}
+            <div className="bg-white p-8 rounded-2xl border-t-4 border-t-accent shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-x border-b border-gray-100">
+              <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <div className="text-3xl">👥</div>
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-900">Experiencia</h3>
@@ -76,8 +76,8 @@ export default function About() {
             </div>
 
             {/* Innovación - Blue Accent */}
-            <div className="bg-white p-8 rounded-2xl border-t-4 border-t-[#5169a0] shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-x border-b border-gray-100">
-              <div className="w-14 h-14 rounded-xl bg-[#5169a0]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+            <div className="bg-white p-8 rounded-2xl border-t-4 border-t-lightBlue shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-x border-b border-gray-100">
+              <div className="w-14 h-14 rounded-xl bg-lightBlue/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <div className="text-3xl">⚡</div>
               </div>
               <h3 className="text-xl font-bold mb-3 text-gray-900">Innovación</h3>

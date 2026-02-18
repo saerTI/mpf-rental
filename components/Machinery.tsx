@@ -29,14 +29,14 @@ export default function Machinery() {
   }, []);
 
   const allCategories = ['all', ...new Set(machineryData.map(m => m.category))];
-  
+
   const categories = allCategories.map(cat => ({
     id: cat,
     name: cat === 'all' ? 'Todas' : cat
   }));
 
-  const filteredMachinery = selectedCategory === 'all' 
-    ? machineryData 
+  const filteredMachinery = selectedCategory === 'all'
+    ? machineryData
     : machineryData.filter(m => m.category === selectedCategory);
 
   const maxIndex = Math.max(0, filteredMachinery.length - itemsToShow);
@@ -79,14 +79,14 @@ export default function Machinery() {
   const cardWidth = 100 / itemsToShow;
 
   return (
-    <section 
-      id="maquinaria" 
+    <section
+      id="maquinaria"
       className="min-h-screen flex flex-col bg-gradient-to-b from-white to-gray-50 scroll-mt-0 py-12 md:py-16 lg:py-16"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 md:mb-3 tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-2 md:mb-3 tracking-tight">
             Nuestra Maquinaria
           </h2>
           <p className="text-sm md:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto px-4">
@@ -100,11 +100,10 @@ export default function Machinery() {
             <button
               key={category.id}
               onClick={() => handleCategoryChange(category.id)}
-              className={`px-4 md:px-5 py-2 rounded-lg font-medium transition-all duration-300 text-xs md:text-sm ${
-                selectedCategory === category.id
-                  ? 'bg-[#3d4e7c] text-white shadow-lg shadow-[#3d4e7c]/20'
-                  : 'bg-white text-gray-700 hover:bg-gray-50 shadow-sm hover:shadow-md border border-gray-200'
-              }`}
+              className={`px-4 md:px-5 py-2 rounded-lg font-medium transition-all duration-300 text-xs md:text-sm ${selectedCategory === category.id
+                ? 'bg-primary text-white shadow-lg shadow-primary/20'
+                : 'bg-white text-gray-700 hover:bg-gray-50 shadow-sm hover:shadow-md border border-gray-200'
+                }`}
             >
               {category.name}
             </button>
@@ -127,13 +126,13 @@ export default function Machinery() {
                 <button
                   onClick={goToPrevious}
                   disabled={isTransitioning}
-                  className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 xl:-translate-x-6 z-10 bg-white hover:bg-[#3d4e7c] text-gray-900 hover:text-white p-3 xl:p-4 rounded-full shadow-lg transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 items-center justify-center"
+                  className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 xl:-translate-x-6 z-10 bg-white hover:bg-primary text-gray-900 hover:text-white p-3 xl:p-4 rounded-full shadow-lg transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 items-center justify-center"
                   aria-label="Anterior"
                 >
-                  <svg 
-                    className="w-6 h-6 xl:w-8 xl:h-8 transition-transform group-hover:-translate-x-1" 
-                    fill="none" 
-                    stroke="currentColor" 
+                  <svg
+                    className="w-6 h-6 xl:w-8 xl:h-8 transition-transform group-hover:-translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
@@ -143,13 +142,13 @@ export default function Machinery() {
                 <button
                   onClick={goToNext}
                   disabled={isTransitioning}
-                  className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 xl:translate-x-6 z-10 bg-white hover:bg-[#3d4e7c] text-gray-900 hover:text-white p-3 xl:p-4 rounded-full shadow-lg transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 items-center justify-center"
+                  className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 xl:translate-x-6 z-10 bg-white hover:bg-primary text-gray-900 hover:text-white p-3 xl:p-4 rounded-full shadow-lg transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 items-center justify-center"
                   aria-label="Siguiente"
                 >
-                  <svg 
-                    className="w-6 h-6 xl:w-8 xl:h-8 transition-transform group-hover:translate-x-1" 
-                    fill="none" 
-                    stroke="currentColor" 
+                  <svg
+                    className="w-6 h-6 xl:w-8 xl:h-8 transition-transform group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
@@ -160,7 +159,7 @@ export default function Machinery() {
 
             {/* Cards Container - CORREGIDO: Sin gap en el flex, usando padding en tarjetas */}
             <div className="overflow-hidden">
-              <div 
+              <div
                 className="flex transition-transform duration-500 ease-out"
                 style={{
                   transform: `translateX(-${currentIndex * cardWidth}%)`
@@ -170,7 +169,7 @@ export default function Machinery() {
                   <div
                     key={machinery.id}
                     className="flex-shrink-0 px-2 md:px-3 lg:px-4"
-                    style={{ 
+                    style={{
                       width: `${cardWidth}%`
                     }}
                   >
@@ -187,11 +186,10 @@ export default function Machinery() {
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      currentIndex === index
-                        ? 'bg-[#3d4e7c] w-8'
-                        : 'bg-gray-300 w-2 hover:bg-gray-400'
-                    }`}
+                    className={`h-2 rounded-full transition-all duration-300 ${currentIndex === index
+                      ? 'bg-primary w-8'
+                      : 'bg-gray-300 w-2 hover:bg-gray-400'
+                      }`}
                     aria-label={`Ir a slide ${index + 1}`}
                   />
                 ))}
@@ -204,7 +202,7 @@ export default function Machinery() {
                 <button
                   onClick={goToPrevious}
                   disabled={isTransitioning}
-                  className="bg-gradient-to-r from-[#3d4e7c] to-[#2d3e5f] hover:from-[#ff7d6c] hover:to-[#ff6b5a] text-white p-3 rounded-lg shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="bg-gradient-to-r from-navy to-darkBlue hover:from-accent hover:to-accent-hover text-white hover:text-gray-900 p-3 rounded-lg shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   aria-label="Anterior"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -214,7 +212,7 @@ export default function Machinery() {
                 <button
                   onClick={goToNext}
                   disabled={isTransitioning}
-                  className="bg-gradient-to-r from-[#3d4e7c] to-[#2d3e5f] hover:from-[#ff7d6c] hover:to-[#ff6b5a] text-white p-3 rounded-lg shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="bg-gradient-to-r from-navy to-darkBlue hover:from-accent hover:to-accent-hover text-white hover:text-gray-900 p-3 rounded-lg shadow-md transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   aria-label="Siguiente"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

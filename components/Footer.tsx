@@ -45,7 +45,7 @@ export default function Footer() {
                 href="https://www.facebook.com/profile.php?id=61583881635723"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 hover:bg-[#ff7d6c] rounded-lg flex items-center justify-center transition-colors"
+                className="w-10 h-10 bg-gray-800 hover:bg-primary rounded-lg flex items-center justify-center transition-colors"
                 aria-label="Facebook"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -56,7 +56,7 @@ export default function Footer() {
                 href="https://www.instagram.com/mpfrental/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 hover:bg-[#ff7d6c] rounded-lg flex items-center justify-center transition-colors"
+                className="w-10 h-10 bg-gray-800 hover:bg-primary rounded-lg flex items-center justify-center transition-colors"
                 aria-label="Instagram"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -67,7 +67,7 @@ export default function Footer() {
                 href="https://share.google/1f0SU3sfa3ADXglo4"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-800 hover:bg-[#ff7d6c] rounded-lg flex items-center justify-center transition-colors"
+                className="w-10 h-10 bg-gray-800 hover:bg-primary rounded-lg flex items-center justify-center transition-colors"
                 aria-label="Google Maps"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -151,7 +151,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 py-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-4">
             <div className="flex items-center gap-3">
-              <svg className="w-5 h-5 text-[#ff7d6c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <span className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Horario de Atención</span>
