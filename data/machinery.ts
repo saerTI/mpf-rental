@@ -71,7 +71,7 @@ export const machineryData: Machinery[] = [
     id: 'ex-01',
     name: 'Excavadora Shantui SE210-9',
     category: 'Maquinaria Pesada',
-    description: 'Excavadora de orugas de alto rendimiento. Equipada con motor Cummins B5.9-C de 6 cilindros y capacidad de balde de 0.9 m³. Ideal para excavaciones, movimientos de tierra y trabajos de construcción pesada.',
+    description: 'Excavadora de orugas de alto rendimiento. Equipada con motor Cummins B5.9-C de 6 cilindros y capacidad de balde de 0.95 m³. Ideal para excavaciones, movimientos de tierra y trabajos en planta de áridos.',
     specs: {
       weight: '20.800 kg',
       power: '112 kW / 150 HP @ 1950 rpm',
@@ -93,7 +93,7 @@ export const machineryData: Machinery[] = [
     id: 'mn-01',
     name: 'Motoniveladora John Deere 772G',
     category: 'Maquinaria Pesada',
-    description: 'Motoniveladora 6×6 de alto rendimiento para nivelación y perfilado de caminos. Con transmisión PowerShift Plus de 8 velocidades y tracción en las 6 ruedas, ofrece precisión y control superiores en cualquier terreno.',
+    description: 'Motoniveladora 6×6 de alto rendimiento para nivelación y perfilado de caminos. Con transmisión PowerShift Plus de 8 velocidades, ofrece precisión y control superiores en cualquier terreno.',
     specs: {
       weight: '17.530 - 20.500 kg',
       length: '8,89 m',
@@ -116,7 +116,7 @@ export const machineryData: Machinery[] = [
     id: 'rt-01',
     name: 'Rodillo Compactador Cummins T4F',
     category: 'Maquinaria Pesada',
-    description: 'Rodillo compactador de alto rendimiento con motor Cummins de 160 HP. Sistema vibratorio de doble frecuencia (32/36 Hz) y amplitud variable. Ideal para compactación de asfalto y bases. Cumple normas Tier 4 Final EPA / Etapa V UE.',
+    description: 'Rodillo compactador de alto rendimiento con motor Cummins de 160 HP. Sistema vibratorio de doble frecuencia (32/36 Hz) y amplitud variable. Ideal para compactación de suelos y capas granulares. Cumple normas Tier 4 Final EPA / Etapa V UE.',
     specs: {
       weight: '11.709 kg',
       power: '160 HP @ 2200 RPM',
@@ -139,7 +139,7 @@ export const machineryData: Machinery[] = [
     id: 'plantas',
     name: 'Planta de Áridos',
     category: 'Plantas',
-    description: 'Planta de Áridos para producción en sitio. Alta capacidad de producción y eficiencia energética. Incluye chancador primario y seleccionadora.',
+    description: 'Planta de Áridos para producción en sitio. Alta capacidad de producción. Incluye chancador primario y seleccionadora.',
     specs: {
       capacity: '45-100 ton/h',
       power: '320 HP',
@@ -160,7 +160,7 @@ export const machineryData: Machinery[] = [
     id: 'ca-01',
     name: 'Camión Aljibe Sinotruk HOWO A7',
     category: 'Transporte',
-    description: 'Camión aljibe de alta capacidad marca Sinotruk modelo HOWO A7. Equipado con estanque de agua de gran volumen, ideal para control de polvo, riego de caminos y compactación en obras viales, mineras y de construcción. Robusto sistema de bombeo y aspersión para distribución uniforme del agua.',
+    description: 'Camión aljibe de alta capacidad marca Sinotruk modelo HOWO A7. Equipado con estanque de agua de gran volumen, ideal para control de polvo, riego de caminos y compactación en obras viales y de construcción. Robusto sistema de bombeo y aspersión para distribución uniforme del agua.',
     specs: {
       capacity: '15.000 L',
       power: '371 HP',
