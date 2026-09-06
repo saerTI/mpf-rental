@@ -9,7 +9,8 @@ export default function WhatsAppButton() {
 
   // Número de WhatsApp (formato internacional sin +, espacios ni guiones)
   // Ejemplo: +56 9 7808 9545 → 56978089545
-  const phoneNumber = '56978089545';
+  // Debe ser el número de WhatsApp Business conectado al bot de crm-leads.
+  const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '56978089545';
   
   // Mensaje predeterminado
   const defaultMessage = '¡Hola! Me gustaría obtener más información sobre el arriendo de maquinaria.';
