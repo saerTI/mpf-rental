@@ -1,6 +1,8 @@
 // components/Contact.tsx
 'use client';
 
+import LeadForm from '@/components/LeadForm';
+
 export default function Contact() {
   return (
     <section
@@ -15,6 +17,10 @@ export default function Contact() {
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Estamos disponibles para atender tus consultas
           </p>
+        </div>
+
+        <div className="max-w-3xl mx-auto mb-16">
+          <LeadForm />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
