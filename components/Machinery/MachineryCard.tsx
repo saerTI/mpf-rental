@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { Machinery } from '@/types';
+import { useSite } from '@/components/SiteProvider';
 import MachineryModal from './MachineryModal';
 
 interface MachineryCardProps {
@@ -12,9 +13,9 @@ interface MachineryCardProps {
 
 export default function MachineryCard({ machinery }: MachineryCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const phoneNumber = useSite().brand.contact.whatsapp;
 
   const handleWhatsApp = () => {
-    const phoneNumber = '56978089545';
     const message = `¡Hola! Me interesa el arriendo de: ${machinery.name}. ¿Podrían darme más información?`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;

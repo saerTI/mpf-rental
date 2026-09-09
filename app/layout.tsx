@@ -1,26 +1,40 @@
 // app/layout.tsx
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import WhatsAppButton from '@/components/WhatsAppButton';
+import { SITE_URL, SITE_NAME } from '@/lib/site';
 
 const inter = Inter({ subsets: ['latin'] });
 
+export const viewport: Viewport = {
+  themeColor: '#3d4e7c',
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: 'MPF Rental - Arriendo de Maquinaria Pesada | Chillán, Temuco, Valdivia, Osorno',
   description: 'Arriendo de maquinaria pesada para construcción y reparación de caminos. Excavadoras, palas cargadoras, motoniveladoras y más. Servicio en Chillán, Los Ángeles, Temuco, Valdivia, Osorno y Puerto Montt.',
   keywords: 'arriendo maquinaria, maquinaria pesada, construcción caminos, pavimentación, compactación, excavadora, pala cargadora, Chillán, Los Ángeles, Temuco, Valdivia, Osorno, Puerto Montt',
-  
+  alternates: {
+    canonical: '/',
+  },
+
   // Open Graph
   openGraph: {
     title: 'MPF Rental - Arriendo de Maquinaria Pesada en la Zona Sur',
     description: 'Arriendo de maquinaria pesada para construcción de caminos. Servicio profesional en Chillán, Los Ángeles, Temuco, Valdivia, Osorno y Puerto Montt.',
-    url: 'https://mpfrental.cl',
-    siteName: 'MPF Rental',
+    url: SITE_URL,
+    siteName: SITE_NAME,
     locale: 'es_CL',
     type: 'website',
+    images: [
+      {
+        url: '/logo/mpf_rental_morado.png',
+        width: 1200,
+        height: 630,
+        alt: 'MPF Rental - Arriendo de Maquinaria Pesada',
+      },
+    ],
   },
 
   // Twitter Card
@@ -28,6 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'MPF Rental - Arriendo de Maquinaria Pesada',
     description: 'Arriendo de maquinaria para construcción de caminos en la zona sur de Chile.',
+    images: ['/logo/mpf_rental_morado.png'],
   },
 
   // Favicons y App Icons
@@ -50,9 +65,6 @@ export const metadata: Metadata = {
     ],
   },
 
-  // Theme color
-  themeColor: '#3d4e7c',
-
   // Manifest
   manifest: '/site.webmanifest',
 
@@ -68,43 +80,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // El JSON-LD LocalBusiness se genera dinámicamente desde el contenido del
+  // tenant en app/(public)/layout.tsx.
   return (
     <html lang="es" className="scroll-smooth">
-      <head>
-        <meta name="theme-color" content="#3d4e7c" />
-        {/* Schema.org structured data para SEO local */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'LocalBusiness',
-              name: 'MPF Rental',
-              description: 'Arriendo de maquinaria pesada para construcción de caminos',
-              url: 'https://mpfrental.cl',
-              areaServed: [
-                { '@type': 'City', name: 'Chillán' },
-                { '@type': 'City', name: 'Los Ángeles' },
-                { '@type': 'City', name: 'Temuco' },
-                { '@type': 'City', name: 'Valdivia' },
-                { '@type': 'City', name: 'Osorno' },
-                { '@type': 'City', name: 'Puerto Montt' },
-              ],
-              address: {
-                '@type': 'PostalAddress',
-                addressLocality: 'Valdivia',
-                addressCountry: 'CL',
-              },
-            }),
-          }}
-        />
-      </head>
-      <body className={inter.className}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <WhatsAppButton />
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

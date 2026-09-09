@@ -2,8 +2,11 @@
 'use client';
 
 import Image from 'next/image';
+import { useSite } from '@/components/SiteProvider';
 
 export default function Hero() {
+  const { hero } = useSite();
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -18,6 +21,12 @@ export default function Hero() {
     }
   };
 
+  // CTA: '#seccion' hace scroll suave; cualquier otra cosa es un enlace normal.
+  const handleCta = (href: string) => {
+    if (href.startsWith('#')) scrollToSection(href.slice(1));
+    else window.open(href, href.startsWith('http') ? '_blank' : '_self');
+  };
+
   return (
     <section
       id="inicio"
@@ -26,7 +35,7 @@ export default function Hero() {
       {/* Background Image & Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/maquina1.jpg"
+          src={hero.image}
           alt="Maquinaria de construcción"
           fill
           className="object-cover"
@@ -47,40 +56,50 @@ export default function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full pt-32 md:pt-40 pb-40">
         <div className="max-w-3xl">
           {/* Badge */}
-          <div className="inline-block mb-6 animate-fade-in">
-            <span className="bg-accent text-gray-900 px-6 py-2 rounded-full text-sm font-semibold shadow-lg">
-              Soluciones Profesionales en Construcción
-            </span>
-          </div>
+          {hero.badge && (
+            <div className="inline-block mb-6 animate-fade-in">
+              <span className="bg-accent text-gray-900 px-6 py-2 rounded-full text-sm font-semibold shadow-lg">
+                {hero.badge}
+              </span>
+            </div>
+          )}
 
           {/* Título Principal */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-slide-up">
-            Arriendo de Maquinaria para{' '}
-            <span className="text-accent underline decoration-accent/30 underline-offset-8">
-              Construcción de Caminos
-            </span>
+            {hero.title}
+            {hero.titleHighlight && (
+              <>
+                {' '}
+                <span className="text-accent underline decoration-accent/30 underline-offset-8">
+                  {hero.titleHighlight}
+                </span>
+              </>
+            )}
           </h1>
 
           {/* Descripción */}
-          <p className="text-xl md:text-2xl text-white/90 mb-10 leading-relaxed animate-slide-up delay-200">
-            Equipos especializados para movimiento de tierra y compactación de terreno.
-            Servicio en Chillán, Los Ángeles, Temuco, Valdivia, Osorno y Puerto Montt.
-          </p>
+          {hero.subtitle && (
+            <p className="text-xl md:text-2xl text-white/90 mb-10 leading-relaxed animate-slide-up delay-200">
+              {hero.subtitle}
+            </p>
+          )}
 
           {/* Botones CTA */}
           <div className="flex flex-col sm:flex-row gap-4 animate-slide-up delay-300">
             <button
-              onClick={() => scrollToSection('maquinaria')}
+              onClick={() => handleCta(hero.cta.href)}
               className="bg-accent text-gray-900 px-8 py-4 rounded-lg hover:bg-accent-hover transition-all font-semibold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transform"
             >
-              Ver Maquinaria
+              {hero.cta.label}
             </button>
-            <button
-              onClick={() => scrollToSection('contacto')}
-              className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-lg hover:bg-white/20 transition-all font-semibold text-lg border-2 border-white/30 shadow-xl"
-            >
-              Contactar
-            </button>
+            {hero.ctaSecondary && (
+              <button
+                onClick={() => handleCta(hero.ctaSecondary!.href)}
+                className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-lg hover:bg-white/20 transition-all font-semibold text-lg border-2 border-white/30 shadow-xl"
+              >
+                {hero.ctaSecondary.label}
+              </button>
+            )}
           </div>
         </div>
       </div>

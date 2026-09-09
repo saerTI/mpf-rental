@@ -1,9 +1,10 @@
 // app/api/contact/route.ts
 //
-// Puente entre el landing y el microservicio crm-leads.
-// El formulario del sitio hace POST aquí (mismo origen, sin CORS) y este
-// handler reenvía el lead al crm-leads server-to-server, con el secreto
-// compartido en el header (nunca expuesto al navegador).
+// Puente entre el landing y el CRM multi-tenant (crm-leads).
+// El formulario del sitio hace POST aquí (mismo origen, sin CORS) y este handler
+// reenvía el lead server-to-server a /api/v1/leads con la API key del tenant en
+// el header (Bearer). La key NUNCA se expone al navegador. El tenant lo resuelve
+// crm-leads a partir de la propia key.
 
 import { NextResponse, type NextRequest } from 'next/server';
 
@@ -36,9 +37,10 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const base = process.env.CRM_LEADS_URL;
-  if (!base) {
-    console.error('[contact] CRM_LEADS_URL no está configurado');
+  const base = process.env.CRM_LEADS_BASE_URL;
+  const apiKey = process.env.CRM_LEADS_API_KEY;
+  if (!base || !apiKey) {
+    console.error('[contact] CRM_LEADS_BASE_URL o CRM_LEADS_API_KEY no configurados');
     return NextResponse.json(
       { error: 'Servicio no disponible por ahora' },
       { status: 503 },
@@ -46,14 +48,11 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const res = await fetch(`${base}/api/leads/web`, {
+    const res = await fetch(`${base}/api/v1/leads`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // Secreto compartido; crm-leads lo valida (P0 de seguridad de ese lado).
-        ...(process.env.CRM_LEADS_SECRET
-          ? { 'x-api-secret': process.env.CRM_LEADS_SECRET }
-          : {}),
+        Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
         nombre: body.nombre?.trim() || undefined,
@@ -63,7 +62,6 @@ export async function POST(request: NextRequest) {
         mensaje: body.mensaje?.trim() || undefined,
         tracking: body.tracking,
         source: 'web',
-        tenant: process.env.LEAD_TENANT || 'mpf-rental',
       }),
       // No dejamos colgada la request del usuario si crm-leads tarda.
       signal: AbortSignal.timeout(8000),
