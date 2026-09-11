@@ -7,8 +7,9 @@ import Contact from '@/components/Contact';
 import { getMachinery, getSiteContent } from '@/lib/content';
 
 // Contenido/maquinaria administrados en crm-leads; MPF Rental solo renderiza
-// leyendo Firestore. Cachea 5 min (crm-leads puede invalidar vía revalidate).
-export const revalidate = 300;
+// leyendo Firestore. ISR de 60s como red de seguridad; crm-leads puede
+// invalidar al instante vía POST /api/revalidate.
+export const revalidate = 60;
 
 export default async function Home() {
   const machinery = await getMachinery();

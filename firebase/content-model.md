@@ -223,22 +223,61 @@ Formularios por bloque, todos scoped al tenant del usuario:
 - El renderer del sitio debe **degradar con defaults** si falta un campo (nunca romper el
   build por contenido incompleto).
 
-## 7. Integración de cache (opcional pero recomendado)
+## 7. Revalidación de cache (IMPLEMENTADO en mpf-rental)
 
-Al guardar contenido, crm-leads debería avisar al sitio para invalidar cache:
-`POST https://mpfrental.cl/api/revalidate` con un secreto compartido → el sitio hace
-`revalidateTag('content:{tenantId}')`. Evita leer Firestore en cada visita.
+El sitio cachea la home con ISR de **60s** (red de seguridad). Para reflejar los
+cambios del backoffice **al instante**, crm-leads llama a un webhook tras cada
+`set` de `sites/{tenant}`.
+
+**Endpoint (ya existe en mpf-rental):** `POST https://mpfrental.cl/api/revalidate`
+- Header **`x-secret`** = `REVALIDATE_SECRET` (mismo valor en Vercel del sitio y en
+  el env de crm-leads). Comparación en tiempo constante.
+- Body `{ "tenant": "mpf-rental" }` (informativo; el endpoint ya sabe qué purgar).
+- Respuestas: **200** `{revalidated:true}` · **401** secreto malo · **503** si el
+  sitio no tiene `REVALIDATE_SECRET` configurado.
+- Efecto: `revalidatePath('/')` → la próxima visita lee Firestore fresco.
+
+**Lo que falta en crm-leads:** llamar al webhook tras guardar (fire-and-forget,
+sin bloquear el guardado). Multi-tenant: mapear `tenant → { url, secret }`; cada
+sitio de cliente expone su propio `/api/revalidate` con su propio secreto.
+
+```ts
+// crm-leads, tras saveSiteContent(tenant, data):
+const t = REVALIDATE_TARGETS[tenant]; // { url, secret }
+if (t) void fetch(t.url, {
+  method: 'POST',
+  headers: { 'x-secret': t.secret, 'Content-Type': 'application/json' },
+  body: JSON.stringify({ tenant }),
+  signal: AbortSignal.timeout(5000),
+}).catch(() => {}); // si falla, el ISR de 60s lo cubre igual
+```
+
+> Nota: `revalidateTag` NO aplica aquí porque el sitio lee Firestore con el SDK
+> (no `fetch`), así que no hay cache-tags. Para un sitio de una página,
+> `revalidatePath('/')` es lo correcto.
+
+## 8. Consumo de la marca en el sitio (nota de implementación)
+
+- **Colores** (`brand.colors`): el sitio los aplica vía **variables CSS**
+  inyectadas server-side (`--color-primary`, etc.), así que los color pickers del
+  backoffice repintan header, botones, textos, degradados. `darkBlue`/`lightBlue`/
+  `deepNavy` NO están en el modelo (quedan fijos en el sitio).
+- **Valores vacíos**: un campo vacío en Firestore **no** pisa el default del sitio
+  (evita textos en blanco o logos rotos si el cliente no llenó algo). Para cambiar
+  un valor hay que ponerle contenido real; para "borrarlo" no basta con vaciarlo.
+- **Imágenes**: URLs absolutas de `storage.googleapis.com/crm-leads-d5916.firebasestorage.app/...`
+  (ya permitidas en `next.config`).
 
 ---
 
-## 8. Índices sugeridos
+## 9. Índices sugeridos
 
 - `machinery`: índice compuesto `order ASC, name ASC` (para listar ordenado).
 - Resto se resuelve con lecturas por doc/colección directa; no requiere índices extra.
 
 ---
 
-## 9. Seed inicial — tenant `mpf-rental`
+## 10. Seed inicial — tenant `mpf-rental`
 
 Contenido real actual de la web (para poblar el primer tenant):
 
