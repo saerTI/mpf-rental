@@ -106,41 +106,56 @@ export const DEFAULT_SITE: SiteContent = {
   },
 };
 
-// Merge defensivo: lo de Firestore gana donde exista; si falta, cae al default.
+// Un valor "vacío" de Firestore NO debe pisar el default (evita textos en
+// blanco o logos rotos cuando el cliente aún no llenó un campo).
+function isEmpty(v: unknown): boolean {
+  return (
+    v === undefined ||
+    v === null ||
+    (typeof v === 'string' && v.trim() === '') ||
+    (Array.isArray(v) && v.length === 0)
+  );
+}
+
+// Merge profundo: Firestore gana donde tenga un valor no vacío; el resto
+// cae al default. Los objetos se combinan campo a campo; arrays y primitivos
+// se reemplazan (si no están vacíos).
+function deepMerge<T>(def: T, remote: unknown): T {
+  if (remote === undefined || remote === null) return def;
+  if (Array.isArray(def)) return (isEmpty(remote) ? def : remote) as T;
+  if (def !== null && typeof def === 'object') {
+    const out: Record<string, unknown> = { ...(def as object) };
+    const r = remote as Record<string, unknown>;
+    for (const k of Object.keys(def as object)) {
+      if (k in r) out[k] = deepMerge((def as Record<string, unknown>)[k], r[k]);
+    }
+    // Claves presentes solo en Firestore (ej. secciones extra).
+    for (const k of Object.keys(r)) {
+      if (!(k in (def as object)) && !isEmpty(r[k])) out[k] = r[k];
+    }
+    return out as T;
+  }
+  return (isEmpty(remote) ? def : remote) as T;
+}
+
+// Merge defensivo: lo de Firestore gana donde exista (no vacío); si falta,
+// cae al default de DEFAULT_SITE.
 export function mergeSite(remote: SiteContent | null): SiteContent {
-  const d = DEFAULT_SITE;
-  if (!remote) return d;
-  return {
-    brand: {
-      ...d.brand,
-      ...remote.brand,
-      logo: { ...d.brand.logo, ...remote.brand?.logo },
-      colors: { ...d.brand.colors, ...remote.brand?.colors },
-      social: { ...d.brand.social, ...remote.brand?.social },
-      contact: {
-        ...d.brand.contact,
-        ...remote.brand?.contact,
-        address: { ...d.brand.contact.address, ...remote.brand?.contact?.address },
-        areaServed:
-          remote.brand?.contact?.areaServed?.length
-            ? remote.brand.contact.areaServed
-            : d.brand.contact.areaServed,
-        openingHours:
-          remote.brand?.contact?.openingHours?.length
-            ? remote.brand.contact.openingHours
-            : d.brand.contact.openingHours,
-      },
-    },
-    hero: {
-      ...d.hero,
-      ...remote.hero,
-      cta: { ...d.hero.cta, ...remote.hero?.cta },
-      ctaSecondary: remote.hero?.ctaSecondary ?? d.hero.ctaSecondary,
-    },
-    sections: remote.sections?.length ? remote.sections : d.sections,
-    catalog: { ...d.catalog, ...remote.catalog },
-    seo: { ...d.seo, ...remote.seo },
-  };
+  return deepMerge(DEFAULT_SITE, remote);
+}
+
+// Convierte un hex (#RGB, #RRGGBB o #RRGGBBAA) a canales "r g b" para las
+// variables CSS de color. Devuelve null si no es válido.
+export function hexToRgbChannels(hex: string | undefined): string | null {
+  if (!hex) return null;
+  let h = hex.trim().replace(/^#/, '');
+  if (h.length === 3) h = h.split('').map((c) => c + c).join('');
+  if (h.length !== 6 && h.length !== 8) return null;
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  if ([r, g, b].some((n) => Number.isNaN(n))) return null;
+  return `${r} ${g} ${b}`;
 }
 
 // Mapea códigos de día (Mon..Sun) a etiquetas ES y arma "Lun - Jue".
