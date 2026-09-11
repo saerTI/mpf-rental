@@ -2,10 +2,33 @@
 'use client';
 
 import Image from 'next/image';
+import { useEffect, useRef } from 'react';
 import { useSite } from '@/components/SiteProvider';
 
 export default function Hero() {
   const { hero } = useSite();
+  const bgRef = useRef<HTMLDivElement>(null);
+
+  // Parallax: la imagen de fondo se desplaza a ~0.3x del scroll, más lento
+  // que el hero, dando la sensación de que "se scrollea primero".
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      if (bgRef.current) {
+        bgRef.current.style.transform = `translate3d(0, ${window.scrollY * 0.3}px, 0)`;
+      }
+      raf = 0;
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    update();
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -34,17 +57,23 @@ export default function Hero() {
       id="inicio"
       className="relative min-h-screen flex items-center justify-start bg-gradient-to-br from-navy via-lightBlue to-lightBlue scroll-mt-0"
     >
-      {/* Background Image & Overlay */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src={hero.image}
-          alt="Maquinaria de construcción"
-          fill
-          className="object-cover"
-          priority
-        />
-        {/* Dark Gradient Overlay for maximum contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/40"></div>
+      {/* Background Image & Overlay (con parallax) */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Contenedor a tamaño real (inset-0): el parallax hacia abajo no deja
+            huecos, así evitamos el sobre-escalado que pixelaba la imagen. */}
+        <div ref={bgRef} className="absolute inset-0 will-change-transform">
+          <Image
+            src={hero.image}
+            alt="Maquinaria de construcción"
+            fill
+            sizes="100vw"
+            quality={85}
+            className="object-cover"
+            priority
+          />
+          {/* Overlay oscuro (20% más claro que antes: 95/80/40 → 75/60/20) */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/60 to-black/20"></div>
+        </div>
       </div>
 
       {/* Curva inferior */}
