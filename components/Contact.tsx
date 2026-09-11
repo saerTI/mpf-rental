@@ -2,8 +2,20 @@
 'use client';
 
 import LeadForm from '@/components/LeadForm';
+import { useSite } from '@/components/SiteProvider';
+import { formatDays } from '@/lib/site-defaults';
 
 export default function Contact() {
+  const { contact } = useSite().brand;
+  const { address } = contact;
+  const location = [
+    address.locality,
+    address.region,
+    address.country === 'CL' ? 'Chile' : address.country,
+  ]
+    .filter(Boolean)
+    .join(', ');
+
   return (
     <section
       id="contacto"
@@ -26,7 +38,7 @@ export default function Contact() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {/* Teléfono */}
           <a
-            href="tel:+56975372435"
+            href={`tel:${contact.phoneE164}`}
             className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all border border-gray-100 hover:border-accent group"
           >
             <div className="text-accent mb-4">
@@ -35,12 +47,12 @@ export default function Contact() {
               </svg>
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-2">Teléfono</h3>
-            <p className="text-accent font-bold">+56 9 7808 9545</p>
+            <p className="text-accent font-bold">{contact.phoneE164}</p>
           </a>
 
           {/* Email */}
           <a
-            href="mailto:ventas@mpfrental.cl"
+            href={`mailto:${contact.email}`}
             className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all border border-gray-100 hover:border-primary group"
           >
             <div className="text-primary mb-4">
@@ -49,7 +61,7 @@ export default function Contact() {
               </svg>
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-2">Email</h3>
-            <p className="text-accent font-bold text-sm">ventas@mpfrental.cl</p>
+            <p className="text-accent font-bold text-sm">{contact.email}</p>
           </a>
 
           {/* Ubicación */}
@@ -61,7 +73,7 @@ export default function Contact() {
               </svg>
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-2">Ubicación</h3>
-            <p className="text-gray-600">Valdivia, Los Ríos, Chile</p>
+            <p className="text-gray-600">{location}</p>
           </div>
 
           {/* Horario */}
@@ -72,10 +84,14 @@ export default function Contact() {
               </svg>
             </div>
             <h3 className="text-lg font-bold mb-2">Horario</h3>
-            <p className="text-accent font-semibold mb-1">Lun - Jue:</p>
-            <p className="font-bold text-white text-xl mb-4">8:30 - 18:00</p>
-            <p className="text-accent font-semibold mb-1">Vie:</p>
-            <p className="font-bold text-white text-xl">8:30 - 17:00</p>
+            {contact.openingHours.map((h, i) => (
+              <div key={i} className={i > 0 ? 'mt-3' : ''}>
+                <p className="text-accent font-semibold mb-1">{formatDays(h.days)}:</p>
+                <p className="font-bold text-white text-xl">
+                  {h.opens} - {h.closes}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

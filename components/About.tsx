@@ -1,7 +1,19 @@
 // components/About.tsx
 'use client';
 
+import { useSite } from '@/components/SiteProvider';
+
+// Estilos cíclicos para las tarjetas de features (mantiene la variedad visual).
+const CARD_STYLES = [
+  { border: 'border-t-navy', icon: 'bg-primary/10' },
+  { border: 'border-t-accent', icon: 'bg-accent/10' },
+  { border: 'border-t-lightBlue', icon: 'bg-lightBlue/10' },
+];
+
 export default function About() {
+  const about = useSite().sections.find((s) => s.type === 'about');
+  if (!about || about.type !== 'about') return null;
+
   return (
     <section
       id="nosotros"
@@ -12,79 +24,49 @@ export default function About() {
           {/* Contenido */}
           <div>
             <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
-              Sobre MPF Rental
+              {about.title}
             </h2>
-            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-              Somos una empresa especializada en el arriendo de maquinaria para construcción y reparación de caminos.
-              Contamos con equipos de última tecnología y un equipo profesional comprometido con la excelencia.
-            </p>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              Nuestra experiencia en el sector nos permite ofrecer soluciones integrales para proyectos de
-              pavimentación, compactación y mantenimiento de vías.
-            </p>
+            {about.paragraphs.map((p, i) => (
+              <p
+                key={i}
+                className="text-lg text-gray-600 mb-6 last:mb-8 leading-relaxed"
+              >
+                {p}
+              </p>
+            ))}
 
             {/* Estadísticas */}
-            <div className="grid grid-cols-3 gap-6 mb-8">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-navy mb-2">15+</div>
-                <div className="text-sm text-gray-600">Años de Experiencia</div>
+            {about.stats.length > 0 && (
+              <div className="grid grid-cols-3 gap-6 mb-8">
+                {about.stats.map((s, i) => (
+                  <div key={i} className="text-center">
+                    <div className="text-4xl font-bold text-navy mb-2">{s.value}</div>
+                    <div className="text-sm text-gray-600">{s.label}</div>
+                  </div>
+                ))}
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-navy mb-2">50+</div>
-                <div className="text-sm text-gray-600">Proyectos Completados</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-navy mb-2">100%</div>
-                <div className="text-sm text-gray-600">Satisfacción</div>
-              </div>
-            </div>
+            )}
           </div>
 
           {/* Features Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {/* Confiabilidad - Blue Accent */}
-            <div className="bg-white p-8 rounded-2xl border-t-4 border-t-navy shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-x border-b border-gray-100">
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <div className="text-3xl">🛡️</div>
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Confiabilidad</h3>
-              <p className="text-gray-600">
-                Equipos certificados y en perfectas condiciones
-              </p>
-            </div>
-
-            {/* Disponibilidad - Accent Color */}
-            <div className="bg-white p-8 rounded-2xl border-t-4 border-t-accent shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-x border-b border-gray-100">
-              <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <div className="text-3xl">⏰</div>
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Disponibilidad</h3>
-              <p className="text-gray-600">
-                Servicio 24/7 para emergencias
-              </p>
-            </div>
-
-            {/* Experiencia - Accent Color */}
-            <div className="bg-white p-8 rounded-2xl border-t-4 border-t-accent shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-x border-b border-gray-100">
-              <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <div className="text-3xl">👥</div>
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Experiencia</h3>
-              <p className="text-gray-600">
-                Equipo técnico especializado
-              </p>
-            </div>
-
-            {/* Innovación - Blue Accent */}
-            <div className="bg-white p-8 rounded-2xl border-t-4 border-t-lightBlue shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-x border-b border-gray-100">
-              <div className="w-14 h-14 rounded-xl bg-lightBlue/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                <div className="text-3xl">⚡</div>
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Innovación</h3>
-              <p className="text-gray-600">
-                Tecnología de última generación
-              </p>
-            </div>
+            {about.features.map((f, i) => {
+              const style = CARD_STYLES[i % CARD_STYLES.length];
+              return (
+                <div
+                  key={i}
+                  className={`bg-white p-8 rounded-2xl border-t-4 ${style.border} shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border-x border-b border-gray-100`}
+                >
+                  <div
+                    className={`w-14 h-14 rounded-xl ${style.icon} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+                  >
+                    <div className="text-3xl">{f.icon}</div>
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-gray-900">{f.title}</h3>
+                  <p className="text-gray-600">{f.text}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

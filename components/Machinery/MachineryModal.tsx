@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { Machinery } from '@/types';
+import { useSite } from '@/components/SiteProvider';
 
 interface MachineryModalProps {
   machinery: Machinery;
@@ -15,6 +16,7 @@ interface MachineryModalProps {
 export default function MachineryModal({ machinery, isOpen, onClose }: MachineryModalProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const { whatsapp, phoneE164 } = useSite().brand.contact;
 
   // Asegurar que estamos en el cliente
   useEffect(() => {
@@ -75,10 +77,9 @@ export default function MachineryModal({ machinery, isOpen, onClose }: Machinery
   };
 
   const handleWhatsApp = () => {
-    const phoneNumber = '56978089545';
     const message = `¡Hola! Me interesa el arriendo de: ${machinery.name}. ¿Podrían darme más información sobre disponibilidad y tarifas?`;
     const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    const whatsappUrl = `https://wa.me/${whatsapp}?text=${encodedMessage}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -224,7 +225,7 @@ export default function MachineryModal({ machinery, isOpen, onClose }: Machinery
                   WhatsApp
                 </button>
                 <a
-                  href="tel:+56978089545"
+                  href={`tel:${phoneE164}`}
                   className="flex-1 border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition text-center flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

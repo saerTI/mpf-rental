@@ -1,10 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { machineryData } from '@/data/machinery';
+import type { Machinery as MachineryType } from '@/types';
 import MachineryCard from './Machinery/MachineryCard';
 
-export default function Machinery() {
+interface MachineryProps {
+  machinery: MachineryType[];
+}
+
+export default function Machinery({ machinery }: MachineryProps) {
+  // No se exhiben públicamente las máquinas en mantención.
+  const machineryData = machinery.filter((m) => m.status !== 'mantencion');
+
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);

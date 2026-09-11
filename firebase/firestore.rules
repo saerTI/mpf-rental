@@ -1,0 +1,34 @@
+rules_version = '2';
+
+// Reglas multi-tenant para el proyecto crm-leads.
+//
+// SEPARACIÓN CLAVE (corrección de seguridad):
+//   sites/{tenantId}            → contenido PÚBLICO del sitio (lectura pública).
+//   sites/{tenantId}/machinery  → catálogo PÚBLICO (lectura pública).
+//   tenants/{tenantId}          → config del tenant CON SECRETOS (whatsapp.accessToken, etc.) → PRIVADO.
+//   tenants/{tenantId}/leads    → CRM → PRIVADO.
+//
+// Toda ESCRITURA de contenido la hace el backoffice con Admin SDK (salta reglas),
+// por eso `sites/**` es write:false para clientes.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Contenido público del sitio (lo que renderiza la web del cliente).
+    match /sites/{tenantId} {
+      allow read: if true;
+      allow write: if false;                 // solo Admin SDK
+
+      match /machinery/{id} {
+        allow read: if true;
+        allow write: if false;               // solo Admin SDK
+      }
+    }
+
+    // Config del tenant (SECRETOS) + leads → 100% privado.
+    // Acceso solo vía Admin SDK server-side, o admin del tenant si se decide exponerlo.
+    match /tenants/{tenantId}/{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

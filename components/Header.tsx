@@ -1,11 +1,12 @@
 // components/Header.tsx
 'use client';
 
-import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
+import { useSite } from '@/components/SiteProvider';
 
 export default function Header() {
+  const { logo, contact } = useSite().brand;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('inicio');
@@ -94,7 +95,7 @@ export default function Header() {
             <div className={`absolute inset-0 transition-opacity duration-300 ${isScrolled ? 'opacity-0' : 'opacity-100'
               }`}>
               <Image
-                src="/logo/mpf_rental_blanco.png"
+                src={logo.dark ?? logo.full}
                 alt="MPF Rental"
                 width={180}
                 height={48}
@@ -107,7 +108,7 @@ export default function Header() {
             <div className={`absolute inset-0 transition-opacity duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0'
               }`}>
               <Image
-                src="/logo/mpf_rental_morado.png"
+                src={logo.full}
                 alt="MPF Rental"
                 width={180}
                 height={48}
@@ -179,7 +180,7 @@ export default function Header() {
           {/* CTA Button */}
           <div className="hidden md:flex items-center gap-3">
             <a
-              href="tel:+56978089545"
+              href={`tel:${contact.phoneE164}`}
               className={`p-2 transition-colors ${isScrolled ? 'text-gray-600 hover:text-primary' : 'text-white/80 hover:text-white'
                 }`}
             >
@@ -277,7 +278,7 @@ export default function Header() {
                 Solicitar Cotización
               </button>
               <a
-                href="tel:+56975372435"
+                href={`tel:${contact.phoneE164}`}
                 className={`flex items-center justify-center gap-2 border-2 px-6 py-3 rounded-lg transition text-center font-semibold ${isScrolled
                   ? 'border-gray-200 text-gray-700 hover:bg-gray-50'
                   : 'border-white/30 text-white hover:bg-white/10'
