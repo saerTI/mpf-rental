@@ -225,9 +225,12 @@ Formularios por bloque, todos scoped al tenant del usuario:
 
 ## 7. Integración de cache (opcional pero recomendado)
 
-Al guardar contenido, crm-leads debería avisar al sitio para invalidar cache:
-`POST https://mpfrental.cl/api/revalidate` con un secreto compartido → el sitio hace
-`revalidateTag('content:{tenantId}')`. Evita leer Firestore en cada visita.
+Al guardar contenido o maquinaria, crm-leads avisa al sitio para invalidar cache:
+`POST https://www.mpfrental.cl/api/revalidate` con header `x-secret` (= `REVALIDATE_SECRET`
+del sitio y secreto configurado en crm-leads → Configuración → Revalidación) → el sitio hace
+`revalidatePath('/', 'layout')`. Se usa path y no tag porque el contenido se lee con el SDK
+cliente de Firestore (no `fetch`). El ISR por tiempo (`revalidate` de la página) queda como
+respaldo si el webhook falla.
 
 ---
 
