@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { SiteProvider } from '@/components/SiteProvider';
+import ThemeStyle from '@/components/ThemeStyle';
 import { getSiteContent } from '@/lib/content';
 
 export default async function PublicLayout({
@@ -47,6 +48,7 @@ export default async function PublicLayout({
 
   return (
     <SiteProvider value={site}>
+      <ThemeStyle colors={brand.colors} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

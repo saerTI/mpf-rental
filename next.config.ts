@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Red de seguridad: enlaces que apuntan a la ruta de Firestore (sites/{tenant}/...)
+  // no son rutas web. Los redirigimos a la sección correcta en vez de un 404.
+  async redirects() {
+    return [
+      { source: '/sites/:tenant/machinery', destination: '/#maquinaria', permanent: false },
+      { source: '/sites/:path*', destination: '/', permanent: false },
+    ];
+  },
   images: {
     remotePatterns: [
       {

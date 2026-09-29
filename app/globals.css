@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Colores de marca (canales RGB). El layout público los sobreescribe con
+   los valores de Firestore; estos son el fallback. */
+:root {
+  --color-primary: 60 47 124;         /* #3C2F7C */
+  --color-primary-hover: 45 35 96;    /* #2d2360 */
+  --color-accent: 255 184 0;          /* #FFB800 */
+  --color-accent-hover: 230 166 0;    /* #e6a600 */
+  --color-secondary: 125 107 213;     /* #7D6BD5 */
+  --color-secondary-hover: 98 84 179; /* #6254b3 */
+  --color-navy: 61 78 124;            /* #3d4e7c */
+}
+
 /* Smooth scroll para navegación */
 html {
   scroll-behavior: smooth;

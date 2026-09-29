@@ -52,11 +52,17 @@ export default function Header() {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    // Si la sección no está en esta página (ej. un 404), navegamos a la home.
+    if (!element) {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+
     isScrollingRef.current = true;
     setActiveSection(sectionId);
 
-    const element = document.getElementById(sectionId);
-    if (element) {
+    {
       const headerOffset = 70;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;

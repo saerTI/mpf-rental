@@ -8,23 +8,27 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // Colores de marca vía variables CSS (se inyectan desde Firestore en el
+      // layout público). Formato de canales RGB para soportar opacidades
+      // (bg-primary/10, accent/30, etc.). Defaults en app/globals.css.
       colors: {
         primary: {
-          DEFAULT: '#3C2F7C',
-          hover: '#2d2360',
-          light: '#3C2F7C1A',
+          DEFAULT: 'rgb(var(--color-primary) / <alpha-value>)',
+          hover: 'rgb(var(--color-primary-hover) / <alpha-value>)',
+          light: 'rgb(var(--color-primary) / 0.1)',
         },
         accent: {
-          DEFAULT: '#FFB800',
-          hover: '#e6a600',
-          light: '#FFB8001A',
+          DEFAULT: 'rgb(var(--color-accent) / <alpha-value>)',
+          hover: 'rgb(var(--color-accent-hover) / <alpha-value>)',
+          light: 'rgb(var(--color-accent) / 0.1)',
         },
         secondary: {
-          DEFAULT: '#7D6BD5',
-          hover: '#6254b3',
-          light: '#7D6BD51A',
+          DEFAULT: 'rgb(var(--color-secondary) / <alpha-value>)',
+          hover: 'rgb(var(--color-secondary-hover) / <alpha-value>)',
+          light: 'rgb(var(--color-secondary) / 0.1)',
         },
-        navy: '#3d4e7c',
+        navy: 'rgb(var(--color-navy) / <alpha-value>)',
+        // No están en el modelo de marca: se mantienen fijos.
         darkBlue: '#2d3e5f',
         lightBlue: '#5169a0',
         deepNavy: '#1a233a',
