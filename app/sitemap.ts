@@ -12,5 +12,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 1,
     },
+    ...['/politica-de-privacidad', '/eliminacion-de-datos'].map((path) => ({
+      url: `${SITE_URL}${path}`,
+      lastModified: now,
+      changeFrequency: 'yearly' as const,
+      priority: 0.3,
+    })),
   ];
 }

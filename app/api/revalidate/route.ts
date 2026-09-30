@@ -33,9 +33,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
   }
 
-  // Sitio de una sola página: purgamos la home (lee Firestore fresco en la
-  // próxima visita). Si a futuro hay más rutas por tenant, se amplía aquí.
-  revalidatePath('/');
+  // Purgamos todas las rutas bajo el layout raíz (home y páginas legales, que
+  // también leen el contacto del tenant): leen Firestore fresco en la próxima visita.
+  revalidatePath('/', 'layout');
 
   return NextResponse.json({ revalidated: true, at: Date.now() });
 }

@@ -1,6 +1,7 @@
 // components/LeadForm.tsx
 'use client';
 
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { machineryData } from '@/data/machinery';
 import { captureTrackingFromUrl, getTracking } from '@/lib/tracking';
@@ -196,6 +197,14 @@ export default function LeadForm() {
       >
         {status === 'sending' ? 'Enviando...' : 'Solicitar cotización'}
       </button>
+
+      <p className="text-xs text-gray-500 text-center mt-3">
+        Al enviar aceptas nuestra{' '}
+        <Link href="/politica-de-privacidad" className="underline hover:text-primary">
+          Política de Privacidad
+        </Link>
+        .
+      </p>
     </form>
   );
 }
