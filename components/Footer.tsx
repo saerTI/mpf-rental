@@ -2,6 +2,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useSite } from '@/components/SiteProvider';
 import { formatDays } from '@/lib/site-defaults';
 
@@ -202,10 +203,19 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 py-6">
-          <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-sm text-gray-400">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
             <p>
               &copy; {new Date().getFullYear()} {brand.name}. Todos los derechos reservados.
             </p>
+            <div className="flex items-center gap-4">
+              <Link href="/politica-de-privacidad" className="hover:text-white transition">
+                Política de Privacidad
+              </Link>
+              <span className="w-px h-4 bg-gray-700" />
+              <Link href="/eliminacion-de-datos" className="hover:text-white transition">
+                Eliminación de Datos
+              </Link>
+            </div>
           </div>
         </div>
       </div>
