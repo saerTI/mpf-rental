@@ -12,12 +12,12 @@ import { getMachinery, getSiteContent } from '@/lib/content';
 export const revalidate = 60;
 
 export default async function Home() {
-  const machinery = await getMachinery();
+  const [machinery, { catalog }] = await Promise.all([getMachinery(), getSiteContent()]);
 
   return (
     <>
       <Hero />
-      <Machinery machinery={machinery} />
+      <Machinery machinery={machinery} catalogCategories={catalog?.categories} />
       <About />
       <Contact />
     </>

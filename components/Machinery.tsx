@@ -6,9 +6,11 @@ import MachineryCard from './Machinery/MachineryCard';
 
 interface MachineryProps {
   machinery: MachineryType[];
+  /** Orden canónico de los filtros, definido en el backoffice. */
+  catalogCategories?: string[];
 }
 
-export default function Machinery({ machinery }: MachineryProps) {
+export default function Machinery({ machinery, catalogCategories }: MachineryProps) {
   // No se exhiben públicamente las máquinas en mantención.
   const machineryData = machinery.filter((m) => m.status !== 'mantencion');
 
@@ -35,7 +37,17 @@ export default function Machinery({ machinery }: MachineryProps) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const allCategories = ['all', ...new Set(machineryData.map(m => m.category))];
+  // Orden del backoffice (`catalog.categories`) si está definido; lo que no
+  // esté en esa lista se agrega al final para no esconder máquinas. Antes se
+  // derivaban solo del catálogo y una categoría con espacio final aparecía
+  // como un filtro aparte ("Minitruck" dos veces).
+  const enUso = [...new Set(machineryData.map((m) => m.category).filter(Boolean))];
+  const canonicas = (catalogCategories ?? []).filter((c) => enUso.includes(c));
+  const allCategories = [
+    'all',
+    ...canonicas,
+    ...enUso.filter((c) => !canonicas.includes(c)),
+  ];
 
   const categories = allCategories.map(cat => ({
     id: cat,
