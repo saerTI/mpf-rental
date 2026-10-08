@@ -41,8 +41,9 @@ export default function MachineryModal({ machinery, isOpen, onClose }: Machinery
 
   if (!isOpen || !mounted) return null;
 
-  // Usar imágenes de la galería si están disponibles, sino usar la imagen principal
-  const images = machinery.images || [machinery.image];
+  // Galería si la hay; si no, la portada. Se descartan las vacías: con `['']`
+  // el modal abría con una imagen rota a pantalla completa.
+  const images = (machinery.images?.length ? machinery.images : [machinery.image]).filter(Boolean);
 
   // Traducir claves de especificaciones
   const specLabels: Record<string, string> = {
@@ -111,13 +112,24 @@ export default function MachineryModal({ machinery, isOpen, onClose }: Machinery
             <div className="bg-gray-900 p-6 overflow-y-auto">
               {/* Main Image */}
               <div className="relative aspect-[4/3] bg-gray-800 rounded-lg overflow-hidden mb-4">
-                <Image
-                  src={images[selectedImage]}
-                  alt={machinery.name}
-                  fill
-                  className="object-cover"
-                  priority
-                />
+                {images[selectedImage] ? (
+                  <Image
+                    src={images[selectedImage]}
+                    alt={machinery.name}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-gray-500">
+                    <svg className="h-12 w-12" fill="none" stroke="currentColor" strokeWidth={1.2} viewBox="0 0 24 24" aria-hidden>
+                      <rect x="3" y="4.5" width="18" height="15" rx="2" />
+                      <circle cx="8.5" cy="9.5" r="1.5" />
+                      <path d="M3.5 16.5l4.8-4.5 3.5 3.2 3.8-3.6 4.9 4.6" strokeLinejoin="round" />
+                    </svg>
+                    <span className="text-sm">Foto no disponible</span>
+                  </div>
+                )}
 
                 {!machinery.available && (
                   <div className="absolute top-4 right-4 bg-rose-600 text-white px-4 py-2 rounded-full text-sm font-semibold">

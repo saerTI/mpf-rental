@@ -72,16 +72,35 @@ function seedMachinery(): Machinery[] {
   });
 }
 
+/**
+ * Imagen de portada vacía = `<Image src="">`, que el navegador pinta como
+ * imagen rota. Si la ficha no tiene portada pero sí galería, se usa la primera
+ * foto; si no hay ninguna, queda '' y la tarjeta muestra su placeholder.
+ */
+function portada(x: Record<string, unknown>): string {
+  const image = typeof x.image === 'string' ? x.image.trim() : '';
+  if (image) return image;
+  const galeria = Array.isArray(x.images) ? x.images : [];
+  const primera = galeria.find((u): u is string => typeof u === 'string' && u.trim() !== '');
+  return primera?.trim() ?? '';
+}
+
 function toMachinery(id: string, x: Record<string, unknown>): Machinery & { order?: number } {
   const status = (x.status as MachineryStatus) ?? 'disponible';
+  // El backoffice guardaba la categoría como texto libre: sin el trim, "Minitruck"
+  // y "Minitruck " salían como dos filtros distintos en el catálogo.
+  const category = ((x.category as string) ?? '').trim();
+  const images = Array.isArray(x.images)
+    ? (x.images as string[]).filter((u) => typeof u === 'string' && u.trim() !== '')
+    : undefined;
   return {
     id,
     name: (x.name as string) ?? '',
-    category: (x.category as string) ?? 'Maquinaria Pesada',
+    category: category || 'Maquinaria Pesada',
     description: (x.description as string) ?? '',
     specs: (x.specs as Machinery['specs']) ?? {},
-    image: (x.image as string) ?? '',
-    images: (x.images as string[]) ?? undefined,
+    image: portada(x),
+    images: images?.length ? images : undefined,
     status,
     available: status === 'disponible',
     pdfUrl: (x.pdfUrl as string) ?? undefined,

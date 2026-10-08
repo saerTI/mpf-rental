@@ -99,6 +99,7 @@ export interface SiteContent {
   brand: SiteBrand;
   hero: SiteHero;
   sections: SiteSection[];
-  catalog: { showPrice: boolean };
+  /** `categories`: orden canónico de los filtros del catálogo (backoffice). */
+  catalog: { showPrice: boolean; categories?: string[] };
   seo: { title: string; description: string; keywords?: string[]; ogImage?: string; siteUrl?: string };
 }

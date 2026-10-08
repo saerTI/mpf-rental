@@ -30,14 +30,27 @@ export default function MachineryCard({ machinery }: MachineryCardProps) {
           className="relative h-48 sm:h-56 md:h-64 lg:h-72 w-full max-w-full bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden cursor-pointer flex-shrink-0"
           onClick={() => setIsModalOpen(true)}
         >
-          <Image
-            src={machinery.image}
-            alt={machinery.name}
-            fill
-            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
-            priority={false}
-          />
+          {/* Sin foto, `<Image src="">` pinta el icono de imagen rota: mejor un
+              marcador de posición explícito mientras se carga el catálogo. */}
+          {machinery.image ? (
+            <Image
+              src={machinery.image}
+              alt={machinery.name}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+              priority={false}
+            />
+          ) : (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-gray-400">
+              <svg className="h-10 w-10 md:h-12 md:w-12" fill="none" stroke="currentColor" strokeWidth={1.2} viewBox="0 0 24 24" aria-hidden>
+                <rect x="3" y="4.5" width="18" height="15" rx="2" />
+                <circle cx="8.5" cy="9.5" r="1.5" />
+                <path d="M3.5 16.5l4.8-4.5 3.5 3.2 3.8-3.6 4.9 4.6" strokeLinejoin="round" />
+              </svg>
+              <span className="text-xs font-medium">Foto no disponible</span>
+            </div>
+          )}
 
           {/* Overlay on hover */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-4 md:pb-6">
@@ -119,9 +132,13 @@ export default function MachineryCard({ machinery }: MachineryCardProps) {
 
           {/* Action Buttons - Always at bottom - TAMAÑO RESPONSIVE */}
           <div className="flex gap-2 mt-auto w-full">
+            {/* Color sólido, no degradado: `from-primary to-primary-hover` mezcla
+                un color con su propio estado hover, y al pasar el mouse lo
+                invertía. Con una paleta mal configurada eso daba un botón
+                rojo→verde. El hover ahora solo oscurece. */}
             <button
               onClick={() => setIsModalOpen(true)}
-              className="flex-1 bg-gradient-to-r from-primary to-primary-hover text-white px-3 py-2 md:px-4 md:py-3 rounded-lg text-xs md:text-sm font-semibold hover:from-primary-hover hover:to-primary transition-all duration-300 shadow-md hover:shadow-xl transform hover:scale-105 text-center"
+              className="flex-1 bg-primary hover:bg-primary-hover text-white px-3 py-2 md:px-4 md:py-3 rounded-lg text-xs md:text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-xl transform hover:scale-105 text-center"
             >
               Ver Detalles
             </button>
