@@ -3,6 +3,7 @@
 
 import LeadForm from '@/components/LeadForm';
 import { useSite } from '@/components/SiteProvider';
+import { callPhone } from '@/lib/site';
 import { formatDays } from '@/lib/site-defaults';
 
 export default function Contact() {
@@ -38,7 +39,7 @@ export default function Contact() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {/* Teléfono */}
           <a
-            href={`tel:${contact.phoneE164}`}
+            href={`tel:${callPhone(contact)}`}
             className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all border border-gray-100 hover:border-accent group"
           >
             <div className="text-accent mb-4">
@@ -47,7 +48,7 @@ export default function Contact() {
               </svg>
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-2">Teléfono</h3>
-            <p className="text-accent font-bold">{contact.phoneE164}</p>
+            <p className="text-accent font-bold">{callPhone(contact)}</p>
           </a>
 
           {/* Email */}

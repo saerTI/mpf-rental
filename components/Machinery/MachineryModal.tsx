@@ -6,6 +6,7 @@ import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { Machinery } from '@/types';
 import { useSite } from '@/components/SiteProvider';
+import { callPhone } from '@/lib/site';
 
 interface MachineryModalProps {
   machinery: Machinery;
@@ -16,7 +17,8 @@ interface MachineryModalProps {
 export default function MachineryModal({ machinery, isOpen, onClose }: MachineryModalProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [mounted, setMounted] = useState(false);
-  const { whatsapp, phoneE164 } = useSite().brand.contact;
+  const contact = useSite().brand.contact;
+  const { whatsapp } = contact;
 
   // Asegurar que estamos en el cliente
   useEffect(() => {
@@ -237,7 +239,7 @@ export default function MachineryModal({ machinery, isOpen, onClose }: Machinery
                   WhatsApp
                 </button>
                 <a
-                  href={`tel:${phoneE164}`}
+                  href={`tel:${callPhone(contact)}`}
                   className="flex-1 border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition text-center flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -4,6 +4,7 @@
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { useSite } from '@/components/SiteProvider';
+import { callPhone } from '@/lib/site';
 
 export default function Header() {
   const { logo, contact } = useSite().brand;
@@ -186,7 +187,7 @@ export default function Header() {
           {/* CTA Button */}
           <div className="hidden md:flex items-center gap-3">
             <a
-              href={`tel:${contact.phoneE164}`}
+              href={`tel:${callPhone(contact)}`}
               className={`p-2 transition-colors ${isScrolled ? 'text-gray-600 hover:text-primary' : 'text-white/80 hover:text-white'
                 }`}
             >
@@ -284,7 +285,7 @@ export default function Header() {
                 Solicitar Cotización
               </button>
               <a
-                href={`tel:${contact.phoneE164}`}
+                href={`tel:${callPhone(contact)}`}
                 className={`flex items-center justify-center gap-2 border-2 px-6 py-3 rounded-lg transition text-center font-semibold ${isScrolled
                   ? 'border-gray-200 text-gray-700 hover:bg-gray-50'
                   : 'border-white/30 text-white hover:bg-white/10'

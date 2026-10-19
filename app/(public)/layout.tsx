@@ -7,6 +7,7 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 import { SiteProvider } from '@/components/SiteProvider';
 import ThemeStyle from '@/components/ThemeStyle';
 import { getSiteContent } from '@/lib/content';
+import { callPhone } from '@/lib/site';
 
 export default async function PublicLayout({
   children,
@@ -26,7 +27,7 @@ export default async function PublicLayout({
     url: site.seo.siteUrl,
     logo: brand.logo.full,
     image: site.seo.ogImage ?? brand.logo.full,
-    telephone: brand.contact.phoneE164,
+    telephone: callPhone(brand.contact),
     email: brand.contact.email,
     priceRange: '$$',
     areaServed: brand.contact.areaServed.map((name) => ({ '@type': 'City', name })),
